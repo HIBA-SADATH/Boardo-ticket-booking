@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Payment Successful{% endblock %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/payment_success.css' %}">
+
+<div class="success-container">
+
+    <div class="success-card">
+
+        <div class="success-icon">
+            ✔
+        </div>
+
+        <h2>Payment Successful</h2>
+
+        <p>
+            Your booking has been confirmed.
+        </p>
+
+        <table>
+
+            <tr>
+                <th>Booking ID</th>
+                <td>#{{ booking.id }}</td>
+            </tr>
+
+            <tr>
+                <th>Route</th>
+                <td>
+                    {{ booking.trip.source }}
+                    →
+                    {{ booking.trip.destination }}
+                </td>
+            </tr>
+
+            <tr>
+                <th>Amount Paid</th>
+                <td>₹{{ booking.total_amount }}</td>
+            </tr>
+
+            <tr>
+                <th>Payment ID</th>
+                <td>{{ booking.payment_id }}</td>
+            </tr>
+
+        </table>
+
+        <br>
+
+        <a href="{% url 'booking_success' booking.id %}" class="btn btn-primary">
+            View Ticket
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,140 @@
+/* ==========================================================
+   Boardo — Payment
+   Same design tokens as the rest of Boardo for consistency.
+   ========================================================== */
+
+:root{
+  --bd-bg:            #090c15;
+  --bd-bg-soft:       #0d111f;
+  --bd-card:          #121729;
+  --bd-border:        rgba(255,255,255,0.08);
+  --bd-border-strong: rgba(255,255,255,0.16);
+  --bd-text:          #f5f7fb;
+  --bd-text-dim:      #93a0bd;
+  --bd-text-faint:    #5c657f;
+
+  --bd-teal:          #2dd9c4;
+  --bd-blue:          #5b7cfa;
+  --bd-gradient:       linear-gradient(120deg, var(--bd-teal), var(--bd-blue));
+
+  --bd-radius-lg:     20px;
+  --bd-radius-md:     14px;
+  --bd-radius-pill:   999px;
+}
+
+*{ box-sizing: border-box; }
+
+.payment-container{
+  background: var(--bd-bg);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.payment-card{
+  width: 100%;
+  max-width: 440px;
+  background: var(--bd-card);
+  border: 1px solid var(--bd-border);
+  border-radius: var(--bd-radius-lg);
+  padding: 40px 36px;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+.payment-card::before{
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 3px;
+  background: var(--bd-gradient);
+  opacity: 0.9;
+}
+
+.payment-card h2{
+  margin: 0 0 28px;
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--bd-text);
+}
+
+/* ---------------- Booking details ---------------- */
+
+.booking-details{
+  background: var(--bd-bg-soft);
+  border: 1px solid var(--bd-border);
+  border-radius: var(--bd-radius-md);
+  padding: 20px 22px;
+  margin-bottom: 28px;
+  text-align: left;
+}
+
+.booking-details p{
+  margin: 0;
+  padding: 10px 0;
+  font-size: 0.88rem;
+  color: var(--bd-text-dim);
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  border-bottom: 1px solid var(--bd-border);
+}
+
+.booking-details p:last-child{
+  border-bottom: none;
+  padding-top: 12px;
+}
+
+.booking-details p strong{
+  color: var(--bd-text-faint);
+  font-weight: 600;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  flex-shrink: 0;
+}
+
+.booking-details p:last-child strong{
+  color: var(--bd-text-dim);
+}
+
+.booking-details p:last-child{
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--bd-text);
+}
+
+/* ---------------- Pay button ---------------- */
+
+.pay-btn{
+  width: 100%;
+  border: none;
+  border-radius: var(--bd-radius-pill);
+  background: var(--bd-gradient);
+  color: #0a0e1a;
+  padding: 16px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: filter 0.15s ease, transform 0.15s ease, opacity 0.15s ease;
+}
+
+.pay-btn:hover:not(:disabled){
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+}
+
+.pay-btn:disabled{
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+@media (max-width: 480px){
+  .payment-card{ padding: 32px 24px; }
+}

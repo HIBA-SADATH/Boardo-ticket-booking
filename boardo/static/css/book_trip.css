@@ -1,0 +1,537 @@
+/* =====================================
+   BOARDO SEAT SELECTION PAGE
+===================================== */
+
+
+:root{
+
+    --bg:#090C14;
+
+    --card:#111827;
+
+    --card-soft:#172033;
+
+    --border:#263247;
+
+    --primary:#22C6E0;
+
+    --secondary:#6C7CF0;
+
+    --success:#14E8C4;
+
+    --text:#F8FAFC;
+
+    --muted:#94A3B8;
+
+}
+
+
+
+/* ===============================
+   PAGE
+=============================== */
+
+
+.seat-page{
+
+    min-height:100vh;
+
+    padding:60px 20px;
+
+    background:
+    radial-gradient(
+        circle at top left,
+        rgba(34,198,224,.08),
+        transparent 35%
+    ),
+
+    var(--bg);
+
+    color:var(--text);
+
+}
+
+
+
+/* ===============================
+   HEADER
+=============================== */
+
+
+.seat-header{
+
+    text-align:center;
+
+    margin-bottom:35px;
+
+}
+
+
+
+.eyebrow{
+
+    color:var(--success);
+
+    font-size:12px;
+
+    font-weight:800;
+
+    letter-spacing:3px;
+
+}
+
+
+
+.seat-header h1{
+
+    font-size:40px;
+
+    font-weight:800;
+
+    margin:15px 0 10px;
+
+}
+
+
+
+.seat-header p{
+
+    color:var(--muted);
+
+}
+
+
+
+.route-display{
+
+    display:inline-flex;
+
+    gap:15px;
+
+    margin-top:20px;
+
+    padding:12px 25px;
+
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    border-radius:50px;
+
+}
+
+
+
+.route-display strong{
+
+    color:var(--primary);
+
+}
+
+
+
+
+
+/* ===============================
+   CARD
+=============================== */
+
+
+.seat-card{
+
+    max-width:850px;
+
+    margin:auto;
+
+    background:
+    rgba(17,24,39,.9);
+
+    border:1px solid var(--border);
+
+    border-radius:24px;
+
+    padding:35px;
+
+    box-shadow:
+    0 20px 50px rgba(0,0,0,.4);
+
+}
+
+
+
+
+
+/* ===============================
+   VEHICLE INFO
+=============================== */
+
+
+.vehicle-info{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+    padding-bottom:25px;
+
+    border-bottom:1px solid var(--border);
+
+}
+
+
+
+.vehicle-icon{
+
+    width:55px;
+
+    height:55px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:16px;
+
+    background:
+    rgba(34,198,224,.12);
+
+    color:var(--primary);
+
+    font-size:30px;
+
+}
+
+
+
+.vehicle-info h2{
+
+    font-size:22px;
+
+}
+
+
+
+.vehicle-info p{
+
+    color:var(--muted);
+
+    margin:5px 0;
+
+}
+
+
+
+.vehicle-info span{
+
+    color:var(--success);
+
+    font-size:14px;
+
+}
+
+
+
+
+
+/* ===============================
+   LEGEND
+=============================== */
+
+
+.seat-legend{
+
+    display:flex;
+
+    gap:25px;
+
+    margin:30px 0;
+
+    color:var(--muted);
+
+    font-size:14px;
+
+}
+
+
+
+.seat-legend div{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+}
+
+
+
+.seat-legend span{
+
+    width:16px;
+
+    height:16px;
+
+    border-radius:5px;
+
+}
+
+
+
+.available{
+
+    background:var(--card-soft);
+
+    border:1px solid var(--border);
+
+}
+
+
+
+.selected{
+
+    background:var(--primary);
+
+}
+
+
+
+
+
+/* ===============================
+   SEAT GRID
+=============================== */
+
+
+.seat-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(4,70px);
+
+    gap:18px;
+
+    justify-content:center;
+
+    margin:35px 0;
+
+}
+
+
+
+
+
+.seat-box input{
+
+    display:none;
+
+}
+
+
+
+.seat-box span{
+
+    height:60px;
+
+    width:70px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:var(--card-soft);
+
+    border:1px solid var(--border);
+
+    border-radius:14px;
+
+    color:var(--text);
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+
+
+.seat-box span:hover{
+
+    border-color:var(--primary);
+
+    transform:translateY(-3px);
+
+}
+
+
+
+.seat-box input:checked + span{
+
+    background:
+    linear-gradient(
+        135deg,
+        var(--primary),
+        var(--secondary)
+    );
+
+    color:#06111A;
+
+    border:none;
+
+    box-shadow:
+    0 10px 25px rgba(34,198,224,.35);
+
+}
+
+
+
+
+
+/* ===============================
+   SUMMARY
+=============================== */
+
+
+.seat-summary{
+
+    text-align:center;
+
+    padding:18px;
+
+    background:var(--card-soft);
+
+    border-radius:14px;
+
+    margin-bottom:25px;
+
+}
+
+
+
+.seat-summary strong{
+
+    color:var(--primary);
+
+    font-size:20px;
+
+}
+
+
+
+
+
+/* ===============================
+   BUTTON
+=============================== */
+
+
+.continue-btn{
+
+    width:100%;
+
+    padding:16px;
+
+    border:none;
+
+    border-radius:15px;
+
+    background:
+    linear-gradient(
+        135deg,
+        var(--primary),
+        var(--secondary)
+    );
+
+    color:#06111A;
+
+    font-size:15px;
+
+    font-weight:800;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+
+
+.continue-btn:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+    0 15px 35px rgba(34,198,224,.35);
+
+}
+
+
+
+
+
+/* ===============================
+   MOBILE
+=============================== */
+
+
+@media(max-width:600px){
+
+
+.seat-header h1{
+
+    font-size:30px;
+
+}
+
+
+.seat-card{
+
+    padding:22px;
+
+}
+
+
+.seat-grid{
+
+    grid-template-columns:
+    repeat(3,60px);
+
+    gap:14px;
+
+}
+
+
+
+.seat-box span{
+
+    width:60px;
+
+    height:55px;
+
+}
+
+
+.seat-box.booked{
+    background:#ef4444;
+    color:#fff;
+    cursor:not-allowed;
+    opacity:.7;
+}
+
+
+.seat-box.booked span {
+    color: white;
+}
+
+.seat-box.booked input {
+    display: none;
+}

@@ -1,0 +1,650 @@
+{% extends 'admin_base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block content1 %}
+
+<link rel="stylesheet" href="{% static 'css/admindashboard.css' %}">
+
+<!-- ========================= -->
+<!-- MAIN -->
+<!-- ========================= -->
+
+<main class="main">
+
+    <!-- ========================= -->
+    <!-- TOP BAR -->
+    <!-- ========================= -->
+
+    <header class="topbar">
+
+        <div>
+            <p class="mini-title">
+                BOARDO ADMIN PANEL
+            </p>
+
+            <h1>
+                Welcome back,
+                {{ request.user.first_name|default:request.user.username }}
+                <span aria-hidden="true">👋</span>
+            </h1>
+        </div>
+
+        <div class="top-actions">
+
+            <a href="{% url 'register_agency' %}" class="btn-primary">
+                + Register Agency
+            </a>
+<!-- 
+            <a href='#' class="btn-secondary">
+                Categories
+            </a> -->
+
+        </div>
+
+    </header>
+
+    <!-- ========================= -->
+    <!-- STATISTICS -->
+    <!-- ========================= -->
+
+    <section class="stats" aria-label="Platform statistics">
+
+        <div class="stat-card">
+            <small>Total Users</small>
+            <h2>{{ total_users|default:"0"|intcomma }}</h2>
+            <span>Registered users</span>
+        </div>
+
+        <div class="stat-card">
+            <small>Total Agencies</small>
+            <h2>{{ total_agencies|default:"0"|intcomma }}</h2>
+            <span>Active agencies</span>
+        </div>
+
+        <div class="stat-card">
+            <small>Total Trips</small>
+            <h2>{{ total_trips|default:"0"|intcomma }}</h2>
+            <span>Across all vehicles</span>
+        </div>
+
+        <div class="stat-card">
+            <small>Total Bookings</small>
+            <h2>{{ total_bookings|default:"0"|intcomma }}</h2>
+            <span>Confirmed bookings</span>
+        </div>
+
+        <div class="stat-card revenue">
+            <small>Total Revenue</small>
+            <h2>
+                ₹{{ total_revenue|default:"0"|floatformat:2|intcomma }}
+            </h2>
+            <span>Lifetime earnings</span>
+        </div>
+
+    </section>
+
+    <!-- ========================= -->
+    <!-- REVENUE ANALYTICS -->
+    <!-- ========================= -->
+
+    <section class="dashboard-section">
+
+        <div class="section-header">
+
+            <h2>Revenue Analytics</h2>
+
+            <p>
+                Overview of revenue and booking growth
+            </p>
+
+        </div>
+
+        <div class="chart-grid">
+
+            <div class="chart-card">
+
+                <div class="card-title">
+                    Monthly Revenue
+                </div>
+
+                <canvas
+                    id="revenueChart"
+                    role="img"
+                    aria-label="Line chart of monthly revenue">
+                </canvas>
+
+            </div>
+
+            <div class="chart-card">
+
+                <div class="card-title">
+                    Booking Growth
+                </div>
+
+                <canvas
+                    id="bookingGrowthChart"
+                    role="img"
+                    aria-label="Bar chart of booking growth">
+                </canvas>
+
+            </div>
+
+        </div>
+
+    </section>
+    <!-- ========================= -->
+    <!-- USER ACTIVITY -->
+    <!-- ========================= -->
+
+    <section class="dashboard-section">
+
+        <div class="section-header">
+
+            <h2>User Activity</h2>
+
+            <p>
+                Latest platform statistics
+            </p>
+
+        </div>
+
+        <div class="activity-grid">
+
+            <div class="activity-card">
+
+                <div class="activity-icon" aria-hidden="true">
+                    👤
+                </div>
+
+                <h3>{{ new_users|default:"0"|intcomma }}</h3>
+
+                <span>New Users</span>
+
+                <small>
+                    Joined this month
+                </small>
+
+            </div>
+
+            <div class="activity-card">
+
+                <div class="activity-icon" aria-hidden="true">
+                    🔥
+                </div>
+
+                <h3>{{ active_users|default:"0"|intcomma }}</h3>
+
+                <span>Active Users</span>
+
+                <small>
+                    Logged in this week
+                </small>
+
+            </div>
+
+            <div class="activity-card wide-card">
+
+                <div class="card-title">
+                    Recent Logins
+                </div>
+
+                <ul class="login-list">
+
+                    {% for login in recent_logins %}
+
+                    <li>
+
+                        <div>
+                            <strong>{{ login.username }}</strong>
+                        </div>
+
+                        <small>
+                            {{ login.last_login|date:"M d, Y \a\t g:i A" }}
+                        </small>
+
+                    </li>
+
+                    {% empty %}
+
+                    <li class="empty">
+                        No recent logins
+                    </li>
+
+                    {% endfor %}
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ========================= -->
+    <!-- AGENCY MANAGEMENT -->
+    <!-- ========================= -->
+
+    <section class="dashboard-section">
+
+        <div class="section-header">
+
+            <h2>Agency Management</h2>
+
+            <p>
+                Quick management shortcuts
+            </p>
+
+        </div>
+
+        <div class="action-grid">
+
+            <a href="{% url 'register_agency' %}" class="action-card">
+
+                <div class="action-icon" aria-hidden="true">
+                    ➕
+                </div>
+
+                <h4>
+                    Register Agency
+                </h4>
+
+                <p>
+                    Add a new travel agency
+                </p>
+
+            </a>
+
+            <a href="{% url 'agency_list' %}" class="action-card">
+
+                <div class="action-icon" aria-hidden="true">
+                    🏢
+                </div>
+
+                <h4>
+                    View Agencies
+                </h4>
+
+                <p>
+                    Manage registered agencies
+                </p>
+
+            </a>
+
+            <div
+                class="action-card is-disabled"
+                aria-disabled="true"
+                title="Coming soon">
+
+                <div class="action-icon" aria-hidden="true">
+                    ✔
+                </div>
+
+                <h4>
+                    Approvals
+                </h4>
+
+                <p>
+                    Review pending agencies
+                </p>
+
+                <span class="badge-soon">
+                    Coming soon
+                </span>
+
+            </div>
+
+            <div
+                class="action-card is-disabled"
+                aria-disabled="true"
+                title="Coming soon">
+
+                <div class="action-icon" aria-hidden="true">
+                    📈
+                </div>
+
+                <h4>
+                    Performance
+                </h4>
+
+                <p>
+                    Agency analytics
+                </p>
+
+                <span class="badge-soon">
+                    Coming soon
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+    <!-- ========================= -->
+    <!-- RECENT BOOKINGS -->
+    <!-- ========================= -->
+
+    <section class="dashboard-section">
+
+        <div class="section-header">
+
+            <h2>Recent Bookings</h2>
+
+            <p>
+                Latest bookings across all agencies
+            </p>
+
+        </div>
+
+        <div class="table-card">
+
+            <table class="dashboard-table">
+
+                <thead>
+
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Passenger</th>
+                        <th scope="col">Agency</th>
+                        <th scope="col">Route</th>
+                        <th scope="col">Amount</th>
+                        <th scope="col">Status</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for booking in recent_bookings %}
+
+                    <tr>
+
+                        <td>#{{ booking.id }}</td>
+
+                        <td>
+                            {{ booking.profile.user.username }}
+                        </td>
+
+                        <td>
+                            {{ booking.trip.vehicle.company }}
+                        </td>
+
+                        <td>
+                            {{ booking.trip.source }} →
+                            {{ booking.trip.destination }}
+                        </td>
+
+                        <td>
+                            ₹{{ booking.total_amount|intcomma }}
+                        </td>
+
+                        <td>
+
+                            {% if booking.status == "confirmed" %}
+
+                                <span class="badge success">
+                                    Confirmed
+                                </span>
+
+                            {% elif booking.status == "cancelled" %}
+
+                                <span class="badge danger">
+                                    Cancelled
+                                </span>
+
+                            {% else %}
+
+                                <span class="badge warning">
+                                    Pending
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+
+                    </tr>
+
+                    {% empty %}
+
+                    <tr>
+
+                        <td colspan="6" class="text-center">
+                            No bookings yet
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+    <!-- ========================= -->
+    <!-- SYSTEM CONTROLS -->
+    <!-- ========================= -->
+
+    <section class="dashboard-section">
+
+        <div class="section-header">
+
+            <h2>System Controls</h2>
+
+            <p>
+                Administrator tools
+            </p>
+
+        </div>
+
+        <div class="action-grid">
+
+            <a href="{% url 'add_category' %}" class="action-card">
+
+                <div class="action-icon">
+                    📂
+                </div>
+
+                <h4>Categories</h4>
+
+                <p>
+                    Manage transport categories
+                </p>
+
+            </a>
+
+            <a href="{% url 'admin_reports' %}" class="action-card">
+
+                <div class="action-icon">
+                    📈
+                </div>
+
+                <h4>Reports</h4>
+
+                <p>
+                    Platform reports
+                </p>
+
+            </a>
+
+            <a href="{% url 'admin_settings' %}" class="action-card">
+
+                <div class="action-icon">
+                    ⚙
+                </div>
+
+                <h4>Settings</h4>
+
+                <p>
+                    System preferences
+                </p>
+
+            </a>
+
+            <a href="{% url 'admin:index' %}" class="action-card">
+
+                <div class="action-icon">
+                    🔐
+                </div>
+
+                <h4>Django Admin</h4>
+
+                <p>
+                    Open admin panel
+                </p>
+
+            </a>
+
+        </div>
+
+    </section>
+
+    <!-- ========================= -->
+    <!-- FOOTER -->
+    <!-- ========================= -->
+
+    <footer class="dashboard-footer">
+
+        <p>
+            © 2026 <strong>Boardo</strong> Admin Dashboard
+        </p>
+
+    </footer>
+
+</main>
+
+<!-- ========================= -->
+<!-- CHART DATA -->
+<!-- ========================= -->
+
+{{ revenue_chart_labels|default:"[]"|json_script:"revenue-chart-labels" }}
+{{ revenue_chart_values|default:"[]"|json_script:"revenue-chart-values" }}
+
+{{ booking_growth_labels|default:"[]"|json_script:"booking-growth-labels" }}
+{{ booking_growth_values|default:"[]"|json_script:"booking-growth-values" }}
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+
+const revenueLabels =
+    JSON.parse(document.getElementById("revenue-chart-labels").textContent);
+
+const revenueValues =
+    JSON.parse(document.getElementById("revenue-chart-values").textContent);
+
+const bookingLabels =
+    JSON.parse(document.getElementById("booking-growth-labels").textContent);
+
+const bookingValues =
+    JSON.parse(document.getElementById("booking-growth-values").textContent);
+
+function makeLineChart(canvasId, labels, values, label) {
+
+    return new Chart(document.getElementById(canvasId), {
+
+        type: "line",
+
+        data: {
+
+            labels: labels,
+
+            datasets: [{
+
+                label: label,
+
+                data: values,
+
+                borderColor: "#2dd4bf",
+
+                backgroundColor: "rgba(45,212,191,.15)",
+
+                fill: true,
+
+                tension: 0.4
+
+            }]
+
+        },
+
+        options: {
+
+            responsive: true,
+
+            plugins: {
+
+                legend: {
+
+                    display: false
+
+                }
+
+            }
+
+        }
+
+    });
+
+}
+
+function makeBarChart(canvasId, labels, values) {
+
+    return new Chart(document.getElementById(canvasId), {
+
+        type: "bar",
+
+        data: {
+
+            labels: labels,
+
+            datasets: [{
+
+                data: values,
+
+                backgroundColor: "#3b82f6",
+
+                borderRadius: 8
+
+            }]
+
+        },
+
+        options: {
+
+            responsive: true,
+
+            plugins: {
+
+                legend: {
+
+                    display: false
+
+                }
+
+            }
+
+        }
+
+    });
+
+}
+
+makeLineChart(
+    "revenueChart",
+    revenueLabels,
+    revenueValues,
+    "Revenue"
+);
+
+makeBarChart(
+    "bookingGrowthChart",
+    bookingLabels,
+    bookingValues
+);
+
+</script>
+
+{% endblock %}

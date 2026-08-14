@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/traveller.css' %}">
+
+<div class="delete-card">
+
+    <h1>Delete Traveller</h1>
+
+    <p>
+
+        Are you sure you want to delete
+
+        <strong>{{ traveller.full_name }}</strong>?
+
+    </p>
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        <button class="delete-btn">
+
+            Delete
+
+        </button>
+
+        <a href="{% url 'traveller_list' %}" class="cancel-btn">
+
+            Cancel
+
+        </a>
+
+    </form>
+
+</div>
+
+{% endblock %}

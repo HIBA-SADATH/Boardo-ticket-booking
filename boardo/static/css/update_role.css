@@ -1,0 +1,176 @@
+:root {
+    --bg: #0a0e14;
+    --card: #11161f;
+    --card-border: #1f2733;
+    --input-bg: #0d1219;
+    --text-primary: #f5f6f8;
+    --text-secondary: #8b95a5;
+    --text-muted: #5b6472;
+    --teal: #2dd4bf;
+    --purple: #7c3aed;
+    --blue: #3b82f6;
+    --error: #f87171;
+}
+
+.role-page {
+    display: flex;
+    justify-content: center;
+    padding: 48px 16px;
+    color: var(--text-primary);
+}
+
+.role-card {
+    width: 100%;
+    max-width: 460px;
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    padding: 32px;
+    box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.6);
+}
+
+.eyebrow {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: var(--teal);
+    text-transform: uppercase;
+    margin: 0 0 10px;
+    text-align: center;
+}
+
+.role-card h1 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin: 0 0 6px;
+    text-align: center;
+}
+
+.subtitle {
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.88rem;
+    margin: 0 0 24px;
+}
+
+/* ===================== User info ===================== */
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: var(--input-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 16px 18px;
+    margin-bottom: 24px;
+}
+
+.avatar {
+    width: 44px;
+    height: 44px;
+    border: 2px solid var(--teal);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--teal);
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+.user-info h3 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin: 0 0 2px;
+}
+
+.user-info p {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+/* ===================== Form ===================== */
+
+.form-group {
+    margin-bottom: 24px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 6px;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.form-group select {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+    font-size: 1rem;
+    background: var(--input-bg);
+    color: var(--text-primary);
+    font-family: inherit;
+    appearance: none;
+    background-image: linear-gradient(45deg, transparent 50%, var(--text-secondary) 50%),
+                       linear-gradient(135deg, var(--text-secondary) 50%, transparent 50%);
+    background-position: calc(100% - 18px) center, calc(100% - 13px) center;
+    background-size: 5px 5px, 5px 5px;
+    background-repeat: no-repeat;
+}
+
+.form-group select:focus {
+    outline: none;
+    border-color: var(--teal);
+    box-shadow: 0 0 0 3px rgba(45, 212, 191, 0.15);
+}
+
+.field-error {
+    font-size: 0.78rem;
+    color: var(--error);
+    margin-top: 6px;
+}
+
+/* ===================== Actions ===================== */
+
+.actions {
+    display: flex;
+    gap: 12px;
+}
+
+.btn {
+    flex: 1;
+    padding: 13px;
+    border-radius: 10px;
+    border: none;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    transition: opacity 0.15s ease;
+}
+
+.btn-primary {
+    background: linear-gradient(90deg, var(--teal), var(--blue), var(--purple));
+    color: #06111a;
+}
+
+.btn-primary:hover {
+    opacity: 0.9;
+}
+
+.btn-secondary {
+    background: var(--input-bg);
+    color: var(--text-secondary);
+    border: 1px solid var(--card-border);
+}
+
+.btn-secondary:hover {
+    border-color: var(--text-secondary);
+    color: var(--text-primary);
+}

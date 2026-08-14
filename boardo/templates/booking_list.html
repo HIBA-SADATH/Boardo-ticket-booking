@@ -1,0 +1,199 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/booking_list.css' %}">
+
+<div class="booking-container">
+
+    <h1 class="booking-title">
+        My Bookings
+    </h1>
+
+    {% if bookings %}
+
+        {% for booking in bookings %}
+
+        <div class="booking-card">
+
+            <!-- Top -->
+
+            <div class="booking-top">
+
+                <div>
+
+                    <h2 class="vehicle-name">
+                        {{ booking.trip.vehicle.name }}
+                    </h2>
+
+                    <p class="agency">
+                        {{ booking.trip.vehicle.agency.user.username }}
+                    </p>
+
+                </div>
+
+                {% if booking.status == "confirmed" %}
+                    <span class="status confirmed">
+                        ✓ Confirmed
+                    </span>
+
+                {% elif booking.status == "cancelled" %}
+                    <span class="status cancelled">
+                        ✕ Cancelled
+                    </span>
+
+                {% else %}
+                    <span class="status pending">
+                        ⏳ Pending
+                    </span>
+
+                {% endif %}
+
+            </div>
+
+            <hr>
+
+            <!-- Route -->
+
+            <div class="route">
+
+                <div>
+
+                    <h3>{{ booking.trip.source }}</h3>
+
+                    <small>
+                        {{ booking.trip.departure_time|date:"d M Y" }}
+                    </small>
+
+                    <p>
+                        {{ booking.trip.departure_time|time:"h:i A" }}
+                    </p>
+
+                </div>
+
+                <div class="arrow">
+                    ➜
+                </div>
+
+                <div>
+
+                    <h3>{{ booking.trip.destination }}</h3>
+
+                    <small>
+                        {{ booking.trip.arrival_time|date:"d M Y" }}
+                    </small>
+
+                    <p>
+                        {{ booking.trip.arrival_time|time:"h:i A" }}
+                    </p>
+
+                </div>
+
+            </div>
+
+            <!-- Details -->
+
+            <div class="booking-details">
+
+                <div>
+
+                    <label>Booking ID</label>
+
+                    <span>#{{ booking.id }}</span>
+
+                </div>
+
+                <div>
+
+                    <label>Booked On</label>
+
+                    <span>{{ booking.booking_date|date:"d M Y" }}</span>
+
+                </div>
+
+                <div>
+
+                    <label>Passengers</label>
+
+                    <span>{{ booking.booking_seats.count }}</span>
+
+                </div>
+
+                <div>
+
+                    <label>Total Amount</label>
+
+                    <span class="price">
+                        ₹{{ booking.total_amount }}
+                    </span>
+
+                </div>
+
+            </div>
+
+            <!-- Seat Numbers -->
+
+            <div class="seat-box">
+
+                <label>Seats</label>
+
+                <div class="seat-list">
+
+                    {% for seat in booking.booking_seats.all %}
+
+                        <span class="seat">
+                            {{ seat.seat.seat_number }}
+                        </span>
+
+                    {% empty %}
+
+                        No Seats
+
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+            <!-- Buttons -->
+
+            <div class="booking-actions">
+
+                <a href="#" class="btn view-btn">
+                    View Ticket
+                </a>
+
+                {% if booking.status == "confirmed" %}
+
+                <a href="#" class="btn cancel-btn">
+                    Cancel Booking
+                </a>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    {% else %}
+
+        <div class="empty-booking">
+
+            <h2>No bookings yet.</h2>
+
+            <p>Book your first trip with Boardo.</p>
+
+            <a href="{% url 'search_trip' %}">
+                Search Trips
+            </a>
+
+        </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

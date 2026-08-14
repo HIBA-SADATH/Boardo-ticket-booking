@@ -1,0 +1,39 @@
+{% extends 'agency_base.html' %}
+{% load static %}
+
+{% block title %}
+Edit Vehicle
+{% endblock %}
+
+{% block content2 %}
+
+<div class="container mt-4">
+
+    <div class="card p-4">
+
+        <h2>Edit Vehicle</h2>
+
+        <form method="POST" enctype="multipart/form-data">
+
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <button type="submit" class="btn btn-success">
+                Update Vehicle
+            </button>
+
+            <a href="{% url 'agencydashboard' %}"
+               class="btn btn-secondary">
+
+                Cancel
+
+            </a>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

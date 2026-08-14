@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Traveller Details | Boardo{% endblock %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/traveller_selection.css' %}">
+
+<div class="traveller-page">
+
+    <div class="card">
+
+        <div class="card-header">
+            <h1>Traveller Details</h1>
+            <p>Assign a traveller for each selected seat before proceeding to payment.</p>
+        </div>
+
+        <form method="POST" action="{% url 'create_booking' trip.id %}">
+
+            {% csrf_token %}
+
+            <!-- Selected Seat IDs -->
+            <input type="hidden" name="selected_seats" value="{{ selected_seats }}">
+
+            <!-- Trip Summary -->
+            <div class="trip-summary">
+                <h3>{{ trip.source }} → {{ trip.destination }}</h3>
+                <p><strong>Vehicle:</strong> {{ trip.vehicle.name }}</p>
+                <p><strong>Total Seats:</strong> {{ seats|length }}</p>
+            </div>
+
+            <!-- Traveller Selection -->
+            {% for seat in seats %}
+
+                <div class="seat-card">
+
+                    <div class="seat-info">
+                        <h3>Seat {{ seat.seat_number }}</h3>
+                        <p>Select the traveller travelling in this seat.</p>
+                    </div>
+
+                    <div class="seat-select">
+                        <select name="traveller_for_{{ seat.id }}" required>
+
+                            <option value="">-- Select Traveller --</option>
+
+                            {% for traveller in travellers %}
+                                <option value="{{ traveller.id }}">
+                                    {{ traveller.full_name }} • {{ traveller.gender|title }} • {{ traveller.age }} Years
+                                </option>
+                            {% endfor %}
+
+                        </select>
+                    </div>
+
+                </div>
+
+            {% empty %}
+
+                <div class="empty-state">
+                    <h3>No Seats Selected</h3>
+                    <p>Please go back and select at least one seat.</p>
+                </div>
+
+            {% endfor %}
+
+            <!-- Actions -->
+            <div class="form-actions">
+                <a href="{% url 'add_traveller' %}" class="add-btn">+ Add New Traveller</a>
+                <button type="submit" class="continue-btn">Continue to Payment →</button>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

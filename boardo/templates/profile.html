@@ -1,0 +1,422 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>
+        Boardo Profile
+    </title>
+
+
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+
+</head>
+
+
+<body>
+
+
+<!-- ================= MESSAGE TOAST ================= -->
+
+{% if messages %}
+
+<div class="toast-container">
+
+    {% for message in messages %}
+
+    <div class="toast-message {{ message.tags }}">
+
+
+        <div class="toast-content">
+
+            <span class="toast-icon">
+                ✓
+            </span>
+
+
+            <span>
+                {{ message }}
+            </span>
+
+
+        </div>
+
+
+
+        <button 
+            class="toast-close"
+            onclick="this.parentElement.remove()">
+
+            ×
+
+        </button>
+
+
+    </div>
+
+    {% endfor %}
+
+</div>
+
+{% endif %}
+
+
+
+<div class="profile-page">
+
+
+    <!-- ================= SIDEBAR ================= -->
+
+
+    <aside class="profile-sidebar">
+
+
+        <h2 class="logo">
+            Boardo
+        </h2>
+
+
+
+        <a href="{% url 'dashboard' %}">
+            HOME
+        </a>
+
+
+        <a href="{% url 'booking_list' %}">
+            🎫 My Bookings
+        </a>
+
+
+        <a href="{% url 'traveller_list' %}">
+            👥 My Travellers
+        </a>
+
+
+
+        <a href="{% url 'logout' %}">
+            🚪 Logout
+        </a>
+
+
+    </aside>
+
+
+
+
+
+    <!-- ================= MAIN ================= -->
+
+
+    <main class="profile-main">
+
+
+
+        <!-- PROFILE HEADER -->
+
+
+        <div class="top-card">
+
+
+            <div>
+
+
+                <h1>
+
+                    {% if request.user.get_full_name %}
+
+                        {{ request.user.get_full_name }}
+
+                    {% else %}
+
+                        {{ request.user.username }}
+
+                    {% endif %}
+
+                </h1>
+
+
+
+                <p>
+                    {{ request.user.email }}
+                </p>
+
+
+
+                <span class="role-badge">
+
+                    {{ request.user.profile.get_role_display }}
+
+                </span>
+
+
+            </div>
+
+
+        </div>
+
+
+
+
+
+        <!-- ================= STATS ================= -->
+
+
+        <div class="stats">
+
+
+            <div class="stat-box">
+
+                <h2>
+                    {{ booking_count }}
+                </h2>
+
+                <span>
+                    Total Bookings
+                </span>
+
+
+            </div>
+
+
+
+
+            <div class="stat-box">
+
+
+                <h2>
+                    {{ favourite_count|default:"0" }}
+                </h2>
+
+
+                <span>
+                    Saved Trips
+                </span>
+
+
+            </div>
+
+
+
+
+            <div class="stat-box">
+
+
+                <h2>
+                    {{ traveller_count }}
+                </h2>
+
+
+                <span>
+                    Travellers
+                </span>
+
+
+            </div>
+
+
+
+        </div>
+
+
+
+
+
+
+
+        <!-- ================= PROFILE FORM ================= -->
+
+
+        <form method="POST">
+
+
+            {% csrf_token %}
+
+
+
+            <div class="profile-card">
+
+
+                <h2>
+                    Profile Information
+                </h2>
+
+
+
+
+                <div class="form-grid">
+
+
+                    <div class="form-group">
+
+                        <label>
+                            First Name
+                        </label>
+
+                        {{ user_form.first_name }}
+
+                    </div>
+
+
+
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Last Name
+                        </label>
+
+                        {{ user_form.last_name }}
+
+                    </div>
+
+
+
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Phone Number
+                        </label>
+
+                        {{ profile_form.phone }}
+
+                    </div>
+
+
+
+
+
+                    <div class="form-group">
+
+
+                        <label>
+                            Email
+                        </label>
+
+
+                        <input
+                            type="email"
+                            value="{{ request.user.email }}"
+                            disabled>
+
+
+                    </div>
+
+
+
+
+
+
+                    <div class="form-group">
+
+
+                        <label>
+                            Username
+                        </label>
+
+
+                        <input
+                            type="text"
+                            value="{{ request.user.username }}"
+                            disabled>
+
+
+                    </div>
+
+
+
+
+
+
+
+                    <div class="form-group">
+
+
+                        <label>
+                            Account Type
+                        </label>
+
+
+                        <input
+                            type="text"
+                            value="{{ request.user.profile.get_role_display }}"
+                            disabled>
+
+
+                    </div>
+
+
+
+                </div>
+
+
+
+
+
+                <button 
+                    type="submit"
+                    class="save-btn">
+
+                    Save Changes
+
+                </button>
+
+
+
+            </div>
+
+
+
+        </form>
+
+
+
+
+    </main>
+
+
+
+</div>
+
+
+
+
+
+<script>
+
+setTimeout(function(){
+
+
+    const toast = document.querySelector(".toast-message");
+
+
+    if(toast){
+
+        toast.style.opacity = "0";
+
+
+        setTimeout(function(){
+
+            toast.remove();
+
+        },500);
+
+    }
+
+
+},3000);
+
+
+</script>
+
+
+
+</body>
+
+</html>

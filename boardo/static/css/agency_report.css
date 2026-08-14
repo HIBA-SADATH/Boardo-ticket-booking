@@ -1,0 +1,307 @@
+/* ==========================
+   AGENCY REPORT
+========================== */
+
+body{
+
+    background:#f5f7fb;
+
+}
+
+
+
+/* Page Title */
+
+.page-title{
+
+    font-size:34px;
+
+    font-weight:700;
+
+    color:#1f2937;
+
+}
+
+
+
+.page-subtitle{
+
+    color:#6b7280;
+
+}
+
+
+
+/* Cards */
+
+.card{
+
+    border:none;
+
+    border-radius:18px;
+
+    transition:.3s;
+
+}
+
+
+
+.card:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:0 15px 35px rgba(0,0,0,.12);
+
+}
+
+
+
+.card-header{
+
+    background:#fff;
+
+    border-bottom:1px solid #ececec;
+
+    font-weight:600;
+
+    font-size:18px;
+
+}
+
+
+
+/* Summary Cards */
+
+.summary-card{
+
+    padding:30px 20px;
+
+    text-align:center;
+
+}
+
+
+
+.summary-card i{
+
+    font-size:38px;
+
+    margin-bottom:15px;
+
+}
+
+
+
+.summary-card h6{
+
+    color:#6b7280;
+
+    margin-bottom:10px;
+
+    font-weight:600;
+
+}
+
+
+
+.summary-card h2{
+
+    font-size:34px;
+
+    font-weight:700;
+
+}
+
+
+
+/* Colors */
+
+.primary{
+
+    color:#4f46e5;
+
+}
+
+
+
+.success{
+
+    color:#16a34a;
+
+}
+
+
+
+.warning{
+
+    color:#f59e0b;
+
+}
+
+
+
+.danger{
+
+    color:#ef4444;
+
+}
+
+
+
+/* Tables */
+
+.table{
+
+    margin-bottom:0;
+
+}
+
+
+
+.table thead{
+
+    background:#f8fafc;
+
+}
+
+
+
+.table thead th{
+
+    border:none;
+
+    color:#374151;
+
+    font-weight:600;
+
+}
+
+
+
+.table tbody tr{
+
+    transition:.2s;
+
+}
+
+
+
+.table tbody tr:hover{
+
+    background:#f8f9fa;
+
+}
+
+
+
+.table td{
+
+    vertical-align:middle;
+
+}
+
+
+
+/* Badges */
+
+.badge{
+
+    padding:8px 14px;
+
+    border-radius:30px;
+
+    font-size:13px;
+
+}
+
+
+
+/* Reviews */
+
+.review-item{
+
+    padding:18px 0;
+
+    border-bottom:1px solid #ececec;
+
+}
+
+
+
+.review-item:last-child{
+
+    border:none;
+
+}
+
+
+
+.review-name{
+
+    font-weight:600;
+
+    color:#111827;
+
+}
+
+
+
+.review-stars{
+
+    color:#fbbf24;
+
+    font-size:18px;
+
+}
+
+
+
+.review-comment{
+
+    margin-top:10px;
+
+    color:#4b5563;
+
+}
+
+
+
+.review-date{
+
+    color:#9ca3af;
+
+    font-size:13px;
+
+}
+
+
+
+/* Responsive */
+
+@media(max-width:768px){
+
+.summary-card{
+
+    margin-bottom:20px;
+
+}
+
+.page-title{
+
+    font-size:28px;
+
+}
+
+.card-header{
+
+    font-size:16px;
+
+}
+
+.table{
+
+    font-size:14px;
+
+}
+
+}

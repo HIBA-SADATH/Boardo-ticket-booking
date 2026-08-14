@@ -1,0 +1,511 @@
+/* =====================================
+   BOARDO BOOKING SUCCESS PAGE
+===================================== */
+
+
+:root{
+
+    --bg:#090C14;
+
+    --card:#111827;
+
+    --card-soft:#172033;
+
+    --border:#263247;
+
+    --primary:#22C6E0;
+
+    --secondary:#6C7CF0;
+
+    --success:#14E8C4;
+
+    --warning:#F59E0B;
+
+    --danger:#EF4444;
+
+    --text:#F8FAFC;
+
+    --muted:#94A3B8;
+
+}
+
+
+
+/* ===============================
+   PAGE
+=============================== */
+
+
+.success-page{
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:60px 20px;
+
+    background:
+
+    radial-gradient(
+        circle at top left,
+        rgba(34,198,224,.12),
+        transparent 35%
+    ),
+
+    radial-gradient(
+        circle at bottom right,
+        rgba(108,124,240,.12),
+        transparent 35%
+    ),
+
+    var(--bg);
+
+}
+
+
+
+
+
+/* ===============================
+   CARD
+=============================== */
+
+
+.success-card{
+
+    width:100%;
+
+    max-width:520px;
+
+    background:
+    rgba(17,24,39,.92);
+
+    backdrop-filter:blur(15px);
+
+    border:1px solid var(--border);
+
+    border-radius:28px;
+
+    padding:40px;
+
+    text-align:center;
+
+    box-shadow:
+
+    0 25px 70px rgba(0,0,0,.45);
+
+    animation:fadeUp .5s ease;
+
+}
+
+
+
+
+
+/* ===============================
+   ICON
+=============================== */
+
+
+.success-icon{
+
+    width:85px;
+
+    height:85px;
+
+    margin:0 auto 20px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    border-radius:50%;
+
+    font-size:45px;
+
+    font-weight:900;
+
+    color:#06111A;
+
+    background:
+
+    linear-gradient(
+        135deg,
+        var(--primary),
+        var(--success)
+    );
+
+    box-shadow:
+
+    0 0 40px rgba(20,232,196,.35);
+
+}
+
+
+
+
+
+/* ===============================
+   HEADER
+=============================== */
+
+
+.success-eyebrow{
+
+    color:var(--success);
+
+    font-size:12px;
+
+    font-weight:800;
+
+    letter-spacing:3px;
+
+    margin-bottom:15px;
+
+}
+
+
+
+.success-card h1{
+
+    font-size:34px;
+
+    font-weight:800;
+
+    margin-bottom:12px;
+
+}
+
+
+
+.success-message{
+
+    color:var(--muted);
+
+    line-height:1.6;
+
+}
+
+
+
+
+
+/* ===============================
+   ROUTE
+=============================== */
+
+
+.route-box{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:18px;
+
+    margin:30px 0;
+
+    padding:16px;
+
+    border-radius:18px;
+
+    background:var(--card-soft);
+
+    border:1px solid var(--border);
+
+}
+
+
+
+.route-box span{
+
+    font-weight:700;
+
+}
+
+
+
+.route-box strong{
+
+    color:var(--primary);
+
+    font-size:20px;
+
+}
+
+
+
+
+
+/* ===============================
+   DETAILS
+=============================== */
+
+
+.booking-details{
+
+    text-align:left;
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+    border:1px solid var(--border);
+
+    margin-bottom:30px;
+
+}
+
+
+
+.detail{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:15px 18px;
+
+    background:var(--card-soft);
+
+    border-bottom:1px solid var(--border);
+
+}
+
+
+
+.detail:last-child{
+
+    border-bottom:none;
+
+}
+
+
+
+.detail span:first-child{
+
+    color:var(--muted);
+
+    font-size:14px;
+
+}
+
+
+
+.detail strong{
+
+    color:var(--text);
+
+    font-size:14px;
+
+}
+
+
+
+
+
+/* ===============================
+   STATUS
+=============================== */
+
+
+.status-badge{
+
+    padding:7px 14px;
+
+    border-radius:50px;
+
+    font-size:12px;
+
+    font-weight:800;
+
+    text-transform:uppercase;
+
+}
+
+
+
+.status-confirmed{
+
+    background:
+
+    rgba(20,232,196,.15);
+
+    color:var(--success);
+
+}
+
+
+
+.status-pending{
+
+    background:
+
+    rgba(245,158,11,.15);
+
+    color:var(--warning);
+
+}
+
+
+
+.status-cancelled{
+
+    background:
+
+    rgba(239,68,68,.15);
+
+    color:var(--danger);
+
+}
+
+
+
+
+
+/* ===============================
+   BUTTONS
+=============================== */
+
+
+.success-actions{
+
+    display:flex;
+
+    gap:15px;
+
+}
+
+
+
+.home-btn,
+.secondary-btn{
+
+    flex:1;
+
+    padding:14px;
+
+    border-radius:14px;
+
+    text-decoration:none;
+
+    font-weight:700;
+
+    font-size:14px;
+
+    transition:.3s;
+
+}
+
+
+
+
+
+.home-btn{
+
+    background:
+
+    linear-gradient(
+        135deg,
+        var(--primary),
+        var(--secondary)
+    );
+
+    color:#06111A;
+
+}
+
+
+
+
+
+.secondary-btn{
+
+    background:var(--card-soft);
+
+    border:1px solid var(--border);
+
+    color:var(--text);
+
+}
+
+
+
+
+
+.home-btn:hover,
+.secondary-btn:hover{
+
+    transform:translateY(-3px);
+
+}
+
+
+
+
+
+/* ===============================
+   ANIMATION
+=============================== */
+
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(30px);
+
+    }
+
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+
+
+
+
+/* ===============================
+   MOBILE
+=============================== */
+
+
+@media(max-width:600px){
+
+
+.success-card{
+
+    padding:25px;
+
+}
+
+
+
+.success-card h1{
+
+    font-size:28px;
+
+}
+
+
+
+.succe

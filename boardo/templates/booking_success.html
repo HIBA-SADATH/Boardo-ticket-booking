@@ -1,0 +1,287 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}
+Booking Confirmed | Boardo
+{% endblock %}
+
+
+
+{% block content %}
+
+
+<link rel="stylesheet" href="{% static 'css/booking_success.css' %}">
+
+
+
+<section class="success-page">
+
+
+    <div class="success-card">
+
+
+
+        <!-- SUCCESS ICON -->
+
+
+        <div class="success-icon">
+
+            ✓
+
+        </div>
+
+
+
+
+
+        <p class="success-eyebrow">
+
+            BOARDO BOOKING
+
+        </p>
+
+
+
+
+
+        <h1>
+
+            Booking Confirmed
+
+        </h1>
+
+
+
+
+        <p class="success-message">
+
+            Your ticket has been successfully booked.
+            Have a safe journey.
+
+        </p>
+
+
+
+
+
+
+
+
+
+        <!-- ROUTE -->
+
+
+        <div class="route-box">
+
+
+            <span>
+
+                {{ booking.trip.source }}
+
+            </span>
+
+
+            <strong>
+
+                →
+
+            </strong>
+
+
+            <span>
+
+                {{ booking.trip.destination }}
+
+            </span>
+
+
+        </div>
+
+
+
+
+
+
+
+
+
+        <!-- DETAILS -->
+
+
+        <div class="booking-details">
+
+
+
+
+
+            <div class="detail">
+
+                <span>
+                    Booking ID
+                </span>
+
+
+                <strong>
+                    #{{ booking.id }}
+                </strong>
+
+            </div>
+
+
+
+
+
+
+
+            <div class="detail">
+
+
+                <span>
+                    Vehicle
+                </span>
+
+
+                <strong>
+                    {{ booking.trip.vehicle.name }}
+                </strong>
+
+
+            </div>
+
+
+
+
+
+
+
+
+            <div class="detail">
+
+
+                <span>
+                    Departure
+                </span>
+
+
+                <strong>
+                    {{ booking.trip.departure_time }}
+                </strong>
+
+
+            </div>
+
+
+
+
+
+
+
+
+            <div class="detail">
+
+
+                <span>
+                    Seats
+                </span>
+
+
+                <strong style="color:antiquewhite">
+                    {{ selected_seats|join:", " }}
+                </strong>
+
+
+            </div>
+
+
+
+
+
+
+
+
+            <div class="detail">
+
+
+                <span>
+                    Status
+                </span>
+
+
+
+                <strong>
+
+                    <span class="status-badge 
+                    status-{{ booking.status|lower }}">
+
+
+                        {{ booking.status }}
+
+
+                    </span>
+
+
+                </strong>
+
+
+            </div>
+
+
+
+
+
+        </div>
+
+
+
+
+
+
+
+
+
+        <!-- ACTIONS -->
+
+
+        <div class="success-actions">
+
+
+            <a href="{% url 'dashboard' %}"
+               class="home-btn">
+
+
+                Go Home
+
+
+            </a>
+
+
+
+
+
+            <a href="#"
+               class="secondary-btn">
+
+
+                My Bookings
+
+
+            </a>
+
+
+
+        </div>
+
+
+
+
+
+    </div>
+
+
+
+</section>
+
+
+
+{% endblock %}

@@ -1,0 +1,874 @@
+/* ===========================
+   GLOBAL
+=========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Inter, sans-serif;
+}
+
+
+body{
+
+    background:#0d0f17;
+
+    color:#ffffff;
+
+}
+
+
+
+/* ===========================
+   CONTAINER
+=========================== */
+
+
+.container,
+.form-container{
+
+    width:90%;
+
+    max-width:1200px;
+
+    margin:40px auto;
+
+}
+
+
+
+/* ===========================
+   PAGE HEADER
+=========================== */
+
+
+.page-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:35px;
+
+}
+
+
+.page-header h1{
+
+    font-size:36px;
+
+    font-weight:700;
+
+}
+
+
+.page-header p{
+
+    color:#8d95a8;
+
+    margin-top:8px;
+
+}
+
+
+
+/* ===========================
+   BUTTONS
+=========================== */
+
+
+.btn-primary{
+
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+
+    padding:13px 25px;
+
+
+    background:
+    linear-gradient(
+        135deg,
+        #00E5D8,
+        #7B5CFA
+    );
+
+
+    color:#06111a;
+
+
+    border-radius:12px;
+
+
+    text-decoration:none;
+
+
+    font-weight:700;
+
+
+    border:none;
+
+
+    cursor:pointer;
+
+
+    transition:.3s;
+
+}
+
+
+
+.btn-primary:hover{
+
+
+    transform:translateY(-3px);
+
+
+    box-shadow:
+    0 10px 30px rgba(0,229,216,.35);
+
+
+}
+
+
+
+
+/* ===========================
+   TRAVELLER GRID
+=========================== */
+
+
+.traveller-grid{
+
+
+    display:grid;
+
+
+    grid-template-columns:
+    repeat(
+        auto-fit,
+        minmax(300px,1fr)
+    );
+
+
+    gap:25px;
+
+
+}
+
+
+
+/* ===========================
+   TRAVELLER CARD
+=========================== */
+
+
+.card{
+
+
+    background:#151925;
+
+
+    border:
+
+    1px solid rgba(255,255,255,.08);
+
+
+    border-radius:20px;
+
+
+    padding:28px;
+
+
+    transition:.3s;
+
+
+}
+
+
+
+.card:hover{
+
+
+    transform:translateY(-6px);
+
+
+    border-color:#00E5D8;
+
+
+    box-shadow:
+
+    0 15px 35px rgba(0,0,0,.4);
+
+
+}
+
+
+
+.card h2{
+
+
+    font-size:24px;
+
+    margin-bottom:10px;
+
+
+}
+
+
+
+/* Gender */
+
+
+.gender{
+
+
+    display:inline-block;
+
+
+    padding:6px 15px;
+
+
+    border-radius:20px;
+
+
+    background:
+
+    rgba(0,229,216,.12);
+
+
+    color:#00E5D8;
+
+
+    font-weight:600;
+
+
+    margin-bottom:20px;
+
+
+}
+
+
+
+/* Details */
+
+
+.details p{
+
+
+    margin:12px 0;
+
+
+    color:#c4cad8;
+
+
+}
+
+
+.details strong{
+
+
+    color:white;
+
+
+    margin-right:8px;
+
+
+}
+
+
+
+/* ===========================
+   ACTION BUTTONS
+=========================== */
+
+
+.actions{
+
+
+    display:flex;
+
+
+    gap:12px;
+
+
+    margin-top:25px;
+
+
+}
+
+
+
+.edit,
+.delete{
+
+
+    padding:10px 20px;
+
+
+    border-radius:10px;
+
+
+    text-decoration:none;
+
+
+    font-weight:600;
+
+
+    transition:.3s;
+
+
+}
+
+
+
+.edit{
+
+
+    background:#00E5D8;
+
+
+    color:#06111a;
+
+
+}
+
+
+
+.delete{
+
+
+    background:#ff4d6d;
+
+
+    color:white;
+
+
+}
+
+
+
+.edit:hover,
+.delete:hover{
+
+
+    transform:translateY(-3px);
+
+
+}
+
+
+
+/* ===========================
+   FORM CARD
+=========================== */
+
+
+.form-card{
+
+
+    max-width:700px;
+
+
+    margin:auto;
+
+
+    background:#151925;
+
+
+    padding:40px;
+
+
+    border-radius:22px;
+
+
+    border:
+
+    1px solid rgba(255,255,255,.08);
+
+
+}
+
+
+
+.form-card h1{
+
+
+    margin-bottom:30px;
+
+
+}
+
+
+
+
+.form-grid{
+
+
+    display:grid;
+
+
+    grid-template-columns:
+    repeat(2,1fr);
+
+
+    gap:25px;
+
+
+}
+
+
+
+.full-width{
+
+
+    grid-column:1/3;
+
+
+}
+
+
+
+/* Inputs */
+
+
+.form-grid input,
+.form-grid select{
+
+
+    width:100%;
+
+
+    padding:14px;
+
+
+    margin-top:8px;
+
+
+    background:#0d0f17;
+
+
+    color:white;
+
+
+    border:
+
+    1px solid rgba(255,255,255,.08);
+
+
+    border-radius:12px;
+
+
+    outline:none;
+
+
+}
+
+
+
+.form-grid input:focus,
+.form-grid select:focus{
+
+
+    border-color:#00E5D8;
+
+
+    box-shadow:
+
+    0 0 10px rgba(0,229,216,.25);
+
+
+}
+
+
+
+/* ===========================
+   DELETE PAGE
+=========================== */
+
+
+.delete-card{
+
+
+    max-width:500px;
+
+
+    margin:80px auto;
+
+
+    background:#151925;
+
+
+    padding:40px;
+
+
+    text-align:center;
+
+
+    border-radius:20px;
+
+
+}
+
+
+
+.delete-card p{
+
+
+    margin:25px 0;
+
+
+    color:#c4cad8;
+
+
+}
+
+
+
+.delete-btn{
+
+
+    background:#ff4d6d;
+
+
+    color:white;
+
+
+    padding:12px 25px;
+
+
+    border:none;
+
+
+    border-radius:10px;
+
+
+    cursor:pointer;
+
+
+    font-weight:700;
+
+
+}
+
+
+
+.cancel-btn{
+
+
+    margin-left:15px;
+
+
+    color:white;
+
+
+    text-decoration:none;
+
+
+}
+
+
+
+/* ===========================
+   EMPTY STATE
+=========================== */
+
+
+.empty{
+
+
+    text-align:center;
+
+
+    padding:80px;
+
+
+    background:#151925;
+
+
+    border-radius:20px;
+
+
+    border:
+
+    1px solid rgba(255,255,255,.08);
+
+
+}
+
+
+.empty h2{
+
+
+    margin-bottom:15px;
+
+
+}
+
+
+
+.empty p{
+
+
+    color:#8d95a8;
+
+
+    margin-bottom:25px;
+
+
+}
+
+
+
+
+/* ===========================
+   SUCCESS TOAST MESSAGE
+=========================== */
+
+
+.message-container{
+
+
+    position:fixed;
+
+
+    top:25px;
+
+
+    right:25px;
+
+
+    z-index:9999;
+
+
+}
+
+
+
+.alert-message{
+
+
+    min-width:330px;
+
+
+    max-width:420px;
+
+
+    padding:16px 20px;
+
+
+    background:#151925;
+
+
+    border:
+
+    1px solid rgba(0,229,216,.4);
+
+
+    border-radius:16px;
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    gap:15px;
+
+
+    box-shadow:
+
+    0 15px 40px rgba(0,0,0,.5);
+
+
+    animation:
+
+    slideMessage .4s ease;
+
+
+    transition:.4s;
+
+
+}
+
+
+
+.message-icon{
+
+
+    width:35px;
+
+
+    height:35px;
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    justify-content:center;
+
+
+    border-radius:50%;
+
+
+    background:
+
+    linear-gradient(
+        135deg,
+        #00E5D8,
+        #7B5CFA
+    );
+
+
+    font-weight:700;
+
+
+}
+
+
+
+.message-text{
+
+
+    flex:1;
+
+
+    font-weight:600;
+
+
+}
+
+
+
+.close-message{
+
+
+    background:none;
+
+
+    border:none;
+
+
+    color:#aaa;
+
+
+    font-size:22px;
+
+
+    cursor:pointer;
+
+
+}
+
+
+
+.close-message:hover{
+
+
+    color:white;
+
+
+}
+
+
+
+@keyframes slideMessage{
+
+
+    from{
+
+        opacity:0;
+
+        transform:translateX(80px);
+
+    }
+
+
+    to{
+
+        opacity:1;
+
+        transform:translateX(0);
+
+    }
+
+}
+
+
+
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+
+
+@media(max-width:768px){
+
+
+    .page-header{
+
+
+        flex-direction:column;
+
+
+        align-items:flex-start;
+
+
+        gap:20px;
+
+
+    }
+
+
+
+    .form-grid{
+
+
+        grid-template-columns:1fr;
+
+
+    }
+
+
+
+    .full-width{
+
+
+        grid-column:1;
+
+
+    }
+
+
+
+    .actions{
+
+
+        flex-direction:column;
+
+
+    }
+
+
+
+    .alert-message{
+
+
+        min-width:280px;
+
+
+    }
+
+
+}

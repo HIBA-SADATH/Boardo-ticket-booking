@@ -1,0 +1,363 @@
+{% extends "admin_base.html" %}
+{% load static %}
+{% load humanize %}
+
+
+{% block content1 %}
+
+
+<link rel="stylesheet" href="{% static 'css/admin_reports.css' %}">
+
+
+
+<main class="dash-main">
+
+
+
+    <div class="dash-header">
+
+        <div>
+
+            <p class="eyebrow">
+                SYSTEM ANALYTICS
+            </p>
+
+
+            <h1 class="dash-title">
+                Admin Reports
+            </h1>
+
+
+            <p class="dash-subtitle">
+                Overall performance analytics of Voyago platform.
+            </p>
+
+
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+    <section class="dash-section">
+
+
+        <div class="stat-grid stat-grid-5">
+
+
+
+            <div class="stat-card">
+
+                <p class="stat-label">
+                    Users
+                </p>
+
+                <h2 class="stat-value">
+                    {{ users|default:"0" }}
+                </h2>
+
+            </div>
+
+
+
+
+
+            <div class="stat-card">
+
+                <p class="stat-label">
+                    Agencies
+                </p>
+
+                <h2 class="stat-value">
+                    {{ agencies|default:"0" }}
+                </h2>
+
+            </div>
+
+
+
+
+
+
+            <div class="stat-card">
+
+                <p class="stat-label">
+                    Vehicles
+                </p>
+
+
+                <h2 class="stat-value">
+                    {{ vehicles|default:"0" }}
+                </h2>
+
+
+            </div>
+
+
+
+
+
+
+            <div class="stat-card">
+
+                <p class="stat-label">
+                    Trips
+                </p>
+
+
+                <h2 class="stat-value">
+                    {{ trips|default:"0" }}
+                </h2>
+
+
+            </div>
+
+
+
+
+
+
+            <div class="stat-card">
+
+                <p class="stat-label">
+                    Bookings
+                </p>
+
+
+                <h2 class="stat-value">
+                    {{ bookings|default:"0" }}
+                </h2>
+
+
+            </div>
+
+
+
+        </div>
+
+
+    </section>
+
+
+
+
+
+
+
+
+    <section class="dash-section">
+
+
+        <div class="chart-card">
+
+
+            <div class="chart-card-header">
+
+
+                <div>
+
+                    <h3>
+                        Total Revenue
+                    </h3>
+
+
+                    <p class="chart-card-sub">
+                        Revenue generated from confirmed bookings.
+                    </p>
+
+
+                </div>
+
+
+            </div>
+
+
+
+
+
+            <h1 class="revenue-value">
+
+                ₹ {{ total_revenue|default:0|intcomma }}
+
+            </h1>
+
+
+
+        </div>
+
+
+
+    </section>
+
+
+
+
+
+
+
+
+    <section class="dash-section">
+
+
+        <div class="chart-card">
+
+
+
+            <div class="chart-card-header">
+
+
+                <h3>
+                    Platform Summary
+                </h3>
+
+
+            </div>
+
+
+
+
+
+
+
+            <table class="summary-table">
+
+
+                <tbody>
+
+
+                <tr>
+
+                    <td>
+                        Total Registered Users
+                    </td>
+
+                    <td>
+                        {{ users|default:"0" }}
+                    </td>
+
+                </tr>
+
+
+
+
+
+                <tr>
+
+                    <td>
+                        Total Agencies
+                    </td>
+
+
+                    <td>
+                        {{ agencies|default:"0" }}
+                    </td>
+
+
+                </tr>
+
+
+
+
+
+
+                <tr>
+
+                    <td>
+                        Total Vehicles
+                    </td>
+
+
+                    <td>
+                        {{ vehicles|default:"0" }}
+                    </td>
+
+
+                </tr>
+
+
+
+
+
+
+
+                <tr>
+
+                    <td>
+                        Total Trips
+                    </td>
+
+
+                    <td>
+                        {{ trips|default:"0" }}
+                    </td>
+
+
+                </tr>
+
+
+
+
+
+
+                <tr>
+
+                    <td>
+                        Total Bookings
+                    </td>
+
+
+                    <td>
+                        {{ bookings|default:"0" }}
+                    </td>
+
+
+                </tr>
+
+
+
+
+
+
+                <tr>
+
+                    <td>
+                        Total Revenue
+                    </td>
+
+
+                    <td>
+                        ₹ {{ total_revenue|default:0|intcomma }}
+                    </td>
+
+
+                </tr>
+
+
+
+                </tbody>
+
+
+            </table>
+
+
+
+
+        </div>
+
+
+
+    </section>
+
+
+
+
+
+</main>
+
+
+
+{% endblock %}

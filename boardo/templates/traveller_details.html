@@ -1,0 +1,84 @@
+<form method="POST"
+      action="{% url 'create_booking' trip.id %}"
+      class="traveller-form">
+
+    {% csrf_token %}
+
+    <input
+        type="hidden"
+        name="selected_seats"
+        value="{{ selected_seats }}"
+    >
+
+    <h2 class="form-section-title">
+        Assign Traveller to Each Seat
+    </h2>
+
+    {% for seat in seats %}
+
+    <div class="traveller-card">
+
+        <h3>
+            Seat {{ seat.seat_number }}
+        </h3>
+
+        <div class="form-group">
+
+            <label>
+                Traveller
+            </label>
+
+            <select
+                name="traveller_for_{{ seat.id }}"
+                required
+            >
+
+                <option value="">
+                    Select Traveller
+                </option>
+
+                {% for traveller in travellers %}
+
+                <option value="{{ traveller.id }}">
+
+                    {{ traveller.full_name }}
+
+                    ({{ traveller.gender|title }},
+
+                    {{ traveller.age }} yrs)
+
+                </option>
+
+                {% endfor %}
+
+            </select>
+
+        </div>
+
+    </div>
+
+    {% endfor %}
+
+    <div class="actions">
+
+        <a
+            href="{% url 'add_traveller' %}"
+            class="add-btn"
+        >
+
+            + Add New Traveller
+
+        </a>
+
+        <button
+            type="submit"
+            class="continue-btn"
+        >
+
+            Continue to Payment
+
+        </button>
+
+    </div>
+
+</form>

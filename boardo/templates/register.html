@@ -1,0 +1,277 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Register | Boardo</title>
+
+    <link rel="stylesheet" href="{% static 'css/reg.css' %}">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+
+<body>
+
+<!-- ================= MESSAGE TOGGLE ================= -->
+<!-- ================= POPUP MESSAGE ================= -->
+
+<div class="toast-container">
+
+{% if messages %}
+
+    {% for message in messages %}
+
+    <div class="toast 
+        {% if message.tags == 'success' %}
+            toast-success
+        {% elif message.tags == 'error' %}
+            toast-error
+        {% endif %}">
+
+        {% if message.tags == 'success' %}
+            <i class="fa-solid fa-circle-check"></i>
+        {% else %}
+            <i class="fa-solid fa-circle-exclamation"></i>
+        {% endif %}
+
+        <span>{{ message }}</span>
+
+        <button class="close-toast">
+            ×
+        </button>
+
+    </div>
+
+    {% endfor %}
+
+{% endif %}
+
+</div>
+<!-- ================= HEADER ================= -->
+<header>
+    <nav class="navbar">
+
+        <a href="{% url 'home' %}" class="logo">
+
+            <svg width="34" height="34" viewBox="0 0 124 124">
+                <defs>
+                    <linearGradient id="navGrad">
+                        <stop offset="0%" stop-color="#00E5D8"/>
+                        <stop offset="100%" stop-color="#7B5CFA"/>
+                    </linearGradient>
+                </defs>
+
+                <polygon points="62,0 116,31 116,93 62,124 8,93 8,31"
+                         fill="#0D0F17"/>
+
+                <polygon points="62,0 116,31 116,93 62,124 8,93 8,31"
+                         fill="none"
+                         stroke="url(#navGrad)"
+                         stroke-width="3"/>
+
+                <path d="M64 46 L82 62 L64 78"
+                      fill="none"
+                      stroke="url(#navGrad)"
+                      stroke-width="7"/>
+            </svg>
+
+            <span class="logo-text">
+                Voya<span class="logo-o">go</span>
+            </span>
+
+        </a>
+
+        <ul>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="{% url 'login' %}">Login</a></li>
+            <li><a href="#" class="active">Register</a></li>
+        </ul>
+
+    </nav>
+</header>
+
+<!-- ================= BACKGROUND ================= -->
+<div class="circle one"></div>
+<div class="circle two"></div>
+<div class="circle three"></div>
+
+<!-- ================= REGISTER SECTION ================= -->
+<section class="register-section">
+
+    <div class="register-card">
+
+        <!-- LEFT -->
+        <div class="left">
+
+            <h1>Join <span>Boardo</span></h1>
+
+            <p>
+                Create your account and experience a smarter way
+                to search, compare and book your journeys.
+            </p>
+
+            <div class="brand">
+
+                <svg width="34" height="34" viewBox="0 0 124 124">
+                    <defs>
+                        <linearGradient id="navGrad2">
+                            <stop offset="0%" stop-color="#00E5D8"/>
+                            <stop offset="100%" stop-color="#7B5CFA"/>
+                        </linearGradient>
+                    </defs>
+
+                    <polygon points="62,0 116,31 116,93 62,124 8,93 8,31"
+                             fill="#0D0F17"/>
+
+                    <polygon points="62,0 116,31 116,93 62,124 8,93 8,31"
+                             fill="none"
+                             stroke="url(#navGrad2)"
+                             stroke-width="3"/>
+
+                    <path d="M64 46 L82 62 L64 78"
+                          fill="none"
+                          stroke="url(#navGrad2)"
+                          stroke-width="7"/>
+                </svg>
+
+                <span class="logo-text">
+                    Voya<span class="logo-o">go</span>
+                </span>
+
+            </div>
+
+        </div>
+
+        <!-- RIGHT -->
+        <div class="right">
+
+            <h2>Create Account</h2>
+
+            <p class="subtitle">
+                Start your travel journey today.
+            </p>
+
+            <form method="POST">
+                {% csrf_token %}
+
+                <!-- Global Errors -->
+                {% if form.non_field_errors %}
+                    <div class="form-errors">
+                        {% for error in form.non_field_errors %}
+                            <p class="error-message">
+                                <i class="fa-solid fa-circle-exclamation"></i>
+                                {{ error }}
+                            </p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                <!-- Username -->
+                <div class="input-box">
+                    <label>Username</label>
+                    {{ form.username }}
+
+                    {% if form.username.errors %}
+                        <div class="field-error">
+                            {% for error in form.username.errors %}
+                                <small><i class="fa-solid fa-circle-exclamation"></i> {{ error }}</small>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Email -->
+                <div class="input-box">
+                    <label>Email</label>
+                    {{ form.email }}
+
+                    {% if form.email.errors %}
+                        <div class="field-error">
+                            {% for error in form.email.errors %}
+                                <small><i class="fa-solid fa-circle-exclamation"></i> {{ error }}</small>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Password -->
+                <div class="input-box">
+                    <label>Password</label>
+                    {{ form.password1 }}
+
+                    {% if form.password1.errors %}
+                        <div class="field-error">
+                            {% for error in form.password1.errors %}
+                                <small><i class="fa-solid fa-circle-exclamation"></i> {{ error }}</small>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Confirm Password -->
+                <div class="input-box">
+                    <label>Confirm Password</label>
+                    {{ form.password2 }}
+
+                    {% if form.password2.errors %}
+                        <div class="field-error">
+                            {% for error in form.password2.errors %}
+                                <small><i class="fa-solid fa-circle-exclamation"></i> {{ error }}</small>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Terms -->
+                <div class="terms">
+                    <input type="checkbox" required>
+
+                    <label>
+                        I agree to the
+                        <a href="#">Terms & Conditions</a>
+                        and
+                        <a href="#">Privacy Policy</a>
+                    </label>
+                </div>
+
+                <!-- Submit -->
+                <button type="submit" class="register-btn">
+                    Create Account
+                </button>
+
+            </form>
+
+            <div class="divider">
+                <span>OR</span>
+            </div>
+
+            <button class="google-btn" type="button">
+                <img src="{% static 'images/google.png' %}" alt="Google">
+                Continue with Google
+            </button>
+
+            <p class="login-text">
+                Already have an account?
+                <a href="{% url 'login' %}">Login</a>
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+    © 2026 Boardo • Smart Travel Booking
+</footer>
+
+</body>
+</html>

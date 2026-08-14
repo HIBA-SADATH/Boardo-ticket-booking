@@ -1,0 +1,174 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+Add Vehicle | Voyago
+{% endblock %}
+
+
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/addvehi.css' %}">
+
+
+
+<div class="form-page">
+
+
+    <div class="form-container">
+
+
+
+        <p class="form-eyebrow">
+            FLEET MANAGEMENT
+        </p>
+
+
+
+        <h2 class="form-title">
+            Add New Vehicle
+        </h2>
+
+
+
+        <p class="form-subtitle">
+            Register a vehicle and assign it to your transport services.
+        </p>
+
+
+
+
+
+        <form method="POST"
+              enctype="multipart/form-data"
+              class="form-card">
+
+
+            {% csrf_token %}
+
+
+
+
+            {% if form.non_field_errors %}
+
+            <div class="form-errors">
+
+                {{ form.non_field_errors }}
+
+            </div>
+
+            {% endif %}
+
+
+
+
+
+            {% for field in form %}
+
+
+
+            <div class="form-group">
+
+
+                <label for="{{ field.id_for_label }}">
+
+                    {{ field.label }}
+
+                </label>
+
+
+
+
+                {{ field }}
+
+
+
+
+
+
+                {% if field.help_text %}
+
+                <small class="field-hint">
+
+                    {{ field.help_text }}
+
+                </small>
+
+                {% endif %}
+
+
+
+
+
+
+                {% if field.errors %}
+
+                <div class="field-error">
+
+                    {{ field.errors|striptags }}
+
+                </div>
+
+                {% endif %}
+
+
+
+            </div>
+
+
+
+            {% endfor %}
+
+
+
+
+
+
+
+            <div class="form-actions">
+
+
+
+                <button
+                    type="submit"
+                    class="btn btn-primary">
+
+                    Add Vehicle
+
+                </button>
+
+
+
+
+
+                <a
+                    href="{% url 'agencydashboard' %}"
+                    class="btn btn-secondary">
+
+                    Cancel
+
+                </a>
+
+
+
+            </div>
+
+
+
+
+
+        </form>
+
+
+
+
+    </div>
+
+
+</div>
+
+
+
+{% endblock %}

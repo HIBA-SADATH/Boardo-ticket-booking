@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/help.css' %}">
+
+<div class="help-page">
+
+    <h2 class="help-title">Help Center</h2>
+
+    <p class="help-subtitle">Need help with your booking?</p>
+
+    <div class="help-grid">
+
+        <div class="help-main">
+
+            <div class="faq-grid">
+
+                {% for faq in faqs %}
+
+                    <div class="faq-card">
+                        <h5>{{ faq.question }}</h5>
+                        <p>{{ faq.answer }}</p>
+                    </div>
+
+                {% empty %}
+
+                    <div class="faq-empty">No FAQs available yet.</div>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+        <div class="help-side">
+
+            <div class="ticket-card">
+
+                <h4>Create Ticket</h4>
+
+                <form method="POST">
+
+                    {% csrf_token %}
+
+                    {{ form.as_p }}
+
+                    <button type="submit" class="ticket-submit-btn">Submit</button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <hr class="help-divider">
+
+    <h3 class="recent-title">Recent Tickets</h3>
+
+    {% for ticket in tickets %}
+
+        <div class="recent-ticket">
+
+            <h5>{{ ticket.subject }}</h5>
+
+            <span class="ticket-status status-{{ ticket.status|slugify }}">{{ ticket.status }}</span>
+
+            <p>{{ ticket.message }}</p>
+
+        </div>
+
+    {% empty %}
+
+        <div class="empty">No Tickets Yet</div>
+
+    {% endfor %}
+
+</div>
+
+{% endblock %}

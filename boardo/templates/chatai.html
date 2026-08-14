@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>BoardoAI</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+
+    --bg:#0D0F17;
+    --panel:#151926;
+    --panel-soft:#10141F;
+    --border:#262C3D;
+
+    --primary:#00E5D8;
+    --secondary:#7B5CFA;
+
+    --text:#F5F6FA;
+    --muted:#9BA0B0;
+
+    --ease:cubic-bezier(.22,1,.36,1);
+
+}
+
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+
+html,body{
+
+    height:100%;
+
+    overflow:hidden;
+
+    background:var(--bg);
+
+    color:var(--text);
+
+    font-family:'Inter','Segoe UI',Arial,sans-serif;
+
+}
+
+
+
+/* MAIN */
+
+.chat-app{
+
+    height:100vh;
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+
+
+/* HEADER */
+
+
+.header{
+
+    height:64px;
+
+    flex-shrink:0;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:0 26px;
+
+    background:var(--bg);
+
+    border-bottom:1px solid var(--border);
+
+    position:relative;
+
+}
+
+
+.header::after{
+
+    content:"";
+    position:absolute;
+    left:0; right:0; bottom:-1px;
+    height:1px;
+    background:linear-gradient(90deg, transparent, rgba(0,229,216,.4), rgba(123,92,250,.4), transparent);
+
+}
+
+
+
+.logo{
+
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    font-family:'Space Grotesk',sans-serif;
+    font-size:21px;
+
+    font-weight:700;
+
+    letter-spacing:-.3px;
+
+}
+
+
+.logo-mark{
+
+    width:26px;
+    height:26px;
+    flex-shrink:0;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:linear-gradient(135deg, var(--primary), var(--secondary));
+
+    clip-path:polygon(25% 5%,75% 5%,100% 50%,75% 95%,25% 95%,0% 50%);
+
+    font-size:12px;
+
+}
+
+
+.logo span{
+
+    background:linear-gradient(90deg, var(--primary), var(--secondary));
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+
+}
+
+
+
+.home-btn{
+
+    display:flex;
+    align-items:center;
+    gap:7px;
+
+    text-decoration:none;
+
+    color:var(--text);
+
+    font-family:'Inter',sans-serif;
+    font-size:13.5px;
+    font-weight:600;
+
+    background:var(--panel-soft);
+
+    border:1px solid var(--border);
+
+    padding:9px 18px;
+
+    border-radius:999px;
+
+    transition:border-color .25s var(--ease), background .25s var(--ease);
+
+}
+
+
+.home-btn:hover{
+
+    border-color:rgba(0,229,216,.4);
+
+    background:var(--panel);
+
+}
+
+
+
+
+
+/* CHAT AREA */
+
+
+.chat-area{
+
+    flex:1;
+
+    overflow-y:auto;
+
+}
+
+
+
+.chat-content{
+
+    max-width:820px;
+
+    margin:auto;
+
+    padding:34px 20px 130px;
+
+}
+
+
+
+/* MESSAGE */
+
+
+.message{
+
+    display:flex;
+
+    gap:14px;
+
+    margin-bottom:28px;
+
+    align-items:flex-start;
+
+}
+
+
+
+.avatar{
+
+    width:36px;
+
+    height:36px;
+
+    flex-shrink:0;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:15px;
+
+    background:linear-gradient(160deg, rgba(0,229,216,.18), rgba(0,229,216,.04));
+
+    border:1px solid rgba(0,229,216,.25);
+
+    clip-path:polygon(25% 5%,75% 5%,100% 50%,75% 95%,25% 95%,0% 50%);
+
+}
+
+
+
+.text{
+
+    max-width:750px;
+
+    line-height:1.7;
+
+    font-size:15px;
+
+    white-space:pre-wrap;
+
+    padding-top:6px;
+
+}
+
+
+
+
+
+/* USER */
+
+
+.user{
+
+    justify-content:flex-end;
+
+}
+
+
+.user .avatar{
+
+    background:linear-gradient(160deg, rgba(123,92,250,.22), rgba(123,92,250,.05));
+
+    border:1px solid rgba(123,92,250,.3);
+
+}
+
+
+.user .text{
+
+    background:linear-gradient(135deg, rgba(0,229,216,.1), rgba(123,92,250,.1));
+
+    border:1px solid var(--border);
+
+    padding:11px 18px;
+
+    border-radius:18px 18px 4px 18px;
+
+    max-width:fit-content;
+
+    width:auto;
+
+    font-size:15px;
+
+    padding-top:11px;
+
+}
+
+
+
+
+
+/* INPUT AREA */
+
+
+.input-area{
+
+    position:fixed;
+
+    bottom:0;
+
+    left:0;
+
+    width:100%;
+
+    background:linear-gradient(180deg, transparent, var(--bg) 40%);
+
+    padding:22px 15px 20px;
+
+}
+
+
+
+.input-box{
+
+    max-width:820px;
+
+    margin:auto;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    background:
+
+    linear-gradient(var(--panel),var(--panel)) padding-box,
+    linear-gradient(135deg, rgba(0,229,216,.5), rgba(123,92,250,.4)) border-box;
+
+    border:1px solid transparent;
+
+    border-radius:30px;
+
+    padding:8px 8px 8px 20px;
+
+    box-shadow:0 20px 45px -18px rgba(0,0,0,.6);
+
+    transition:box-shadow .3s var(--ease);
+
+}
+
+
+.input-box:focus-within{
+
+    box-shadow:0 20px 45px -18px rgba(0,0,0,.6), 0 0 0 3px rgba(0,229,216,.1);
+
+}
+
+
+
+textarea{
+
+    flex:1;
+
+    height:45px;
+
+    resize:none;
+
+    background:transparent;
+
+    border:none;
+
+    outline:none;
+
+    color:var(--text);
+
+    padding:12px 0;
+
+    font-family:'Inter',sans-serif;
+    font-size:15px;
+
+}
+
+
+
+textarea::placeholder{
+
+    color:var(--muted);
+
+}
+
+
+
+button{
+
+    width:42px;
+
+    height:42px;
+
+    flex-shrink:0;
+
+    border:none;
+
+    border-radius:50%;
+
+    cursor:pointer;
+
+    background:linear-gradient(135deg, var(--primary), var(--secondary));
+
+    color:#071014;
+
+    font-size:15px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    transition:filter .25s var(--ease), transform .25s var(--ease);
+
+}
+
+
+button:hover{
+
+    filter:brightness(1.08);
+
+    transform:scale(1.04);
+
+}
+
+
+button:disabled{
+
+    opacity:.6;
+    cursor:default;
+    transform:none;
+
+}
+
+
+
+
+
+/* THINKING */
+
+
+.loading{
+
+    display:none;
+
+    align-items:center;
+
+    gap:10px;
+
+    color:var(--muted);
+
+    font-family:'Inter',sans-serif;
+    font-size:13px;
+
+    max-width:820px;
+
+    margin:10px auto 0;
+
+    padding:0 20px;
+
+}
+
+
+
+.dots{
+
+    display:flex;
+
+    gap:5px;
+
+}
+
+
+
+.dots span{
+
+    width:6px;
+
+    height:6px;
+
+    border-radius:50%;
+
+    background:var(--primary);
+
+    animation:blink 1.2s infinite;
+
+}
+
+
+.dots span:nth-child(2){
+
+    background:linear-gradient(90deg, var(--primary), var(--secondary));
+
+    animation-delay:.2s;
+
+}
+
+
+.dots span:nth-child(3){
+
+    background:var(--secondary);
+
+    animation-delay:.4s;
+
+}
+
+
+
+@keyframes blink{
+
+
+0%,80%,100%{
+
+opacity:.3;
+
+transform:translateY(0);
+
+}
+
+
+40%{
+
+opacity:1;
+
+transform:translateY(-4px);
+
+}
+
+
+}
+
+
+
+
+
+/* SCROLL */
+
+
+.chat-area::-webkit-scrollbar{
+
+    width:6px;
+
+}
+
+
+
+.chat-area::-webkit-scrollbar-thumb{
+
+    background:var(--border);
+
+    border-radius:10px;
+
+}
+
+
+@media (prefers-reduced-motion: reduce){
+
+    .dots span{ animation:none; }
+    button{ transition:none; }
+
+}
+
+</style>
+
+</head>
+
+
+
+<body>
+
+
+
+<div class="chat-app">
+
+
+
+<!-- HEADER -->
+
+<div class="header">
+
+
+<div class="logo">
+
+<span class="logo-mark">✦</span>
+
+Boardo<span>AI</span>
+
+</div>
+
+
+
+<a href="{% url 'home' %}" class="home-btn">
+
+⌂ Home
+
+</a>
+
+
+</div>
+
+
+
+
+
+<!-- CHAT -->
+
+
+<div class="chat-area" id="chatArea">
+
+
+<div class="chat-content" id="chatContent">
+
+
+
+{% if not message %}
+
+
+<div class="message">
+
+<div class="avatar">
+
+🤖
+
+</div>
+
+
+<div class="text">
+
+Hello 👋
+
+I am BoardoAI.
+
+Ask me about trips, destinations and booking.
+
+</div>
+
+
+</div>
+
+
+{% endif %}
+
+
+
+
+
+
+{% for msg in message %}
+
+
+{% if msg.role == "assistant" %}
+
+
+<div class="message">
+
+
+<div class="avatar">
+
+🤖
+
+</div>
+
+
+<div class="text">
+
+{{msg.content}}
+
+</div>
+
+
+</div>
+
+
+
+{% else %}
+
+
+<div class="message user">
+
+
+<div class="text">
+
+{{msg.content}}
+
+</div>
+
+
+<div class="avatar">
+
+👤
+
+</div>
+
+
+</div>
+
+
+
+{% endif %}
+
+
+
+{% endfor %}
+
+
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<!-- INPUT -->
+
+
+<div class="input-area">
+
+
+<form method="POST" id="chatForm">
+
+
+{% csrf_token %}
+
+
+
+<div class="input-box">
+
+
+<textarea
+
+id="input"
+
+name="data"
+
+placeholder="Message BoardoAI..."
+
+required></textarea>
+
+
+
+<button id="sendBtn" type="submit">
+
+➤
+
+</button>
+
+
+
+</div>
+
+
+
+<div class="loading" id="loading">
+
+
+BoardoAI is thinking
+
+
+<div class="dots">
+
+<span></span>
+
+<span></span>
+
+<span></span>
+
+</div>
+
+
+</div>
+
+
+
+</form>
+
+
+</div>
+
+
+
+
+
+</div>
+
+
+
+
+
+
+<script>
+
+
+// auto scroll
+
+
+let chat=document.getElementById("chatArea");
+
+
+chat.scrollTop=chat.scrollHeight;
+
+
+
+
+
+// loading
+
+
+let form=document.getElementById("chatForm");
+
+let loading=document.getElementById("loading");
+
+let send=document.getElementById("sendBtn");
+
+
+
+form.addEventListener("submit",function(){
+
+
+loading.style.display="flex";
+
+
+send.innerHTML="⌛";
+
+
+send.disabled=true;
+
+
+});
+
+
+
+
+// enter send
+
+
+let input=document.getElementById("input");
+
+
+input.addEventListener("keydown",function(e){
+
+
+if(e.key==="Enter" && !e.shiftKey){
+
+
+e.preventDefault();
+
+
+form.submit();
+
+
+}
+
+
+});
+
+
+
+</script>
+
+
+
+</body>
+
+</html>

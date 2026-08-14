@@ -1,0 +1,195 @@
+.page-header{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:35px;
+
+}
+
+.page-tag{
+
+    color:#14f1d9;
+    letter-spacing:2px;
+    font-size:12px;
+    font-weight:700;
+    text-transform:uppercase;
+
+}
+
+.page-header h1{
+
+    font-size:38px;
+    margin:8px 0;
+
+}
+
+.page-header span{
+
+    color:#aeb8cb;
+
+}
+
+.add-btn{
+
+    padding:14px 28px;
+    border-radius:14px;
+    text-decoration:none;
+    font-weight:700;
+    color:#06111f;
+    background:linear-gradient(135deg,#14f1d9,#6d5dfc);
+
+}
+
+.vehicle-grid{
+
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:25px;
+
+}
+
+.vehicle-card{
+
+    background:#111827;
+    border-radius:22px;
+    overflow:hidden;
+    border:1px solid rgba(255,255,255,.08);
+    transition:.35s;
+
+}
+
+.vehicle-card:hover{
+
+    transform:translateY(-8px);
+    border-color:#14f1d9;
+    box-shadow:0 20px 45px rgba(20,241,217,.15);
+
+}
+
+.vehicle-image{
+
+    height:210px;
+    overflow:hidden;
+
+}
+
+.vehicle-image img{
+
+    width:100%;
+    height:100%;
+    object-fit:cover;
+
+}
+
+.vehicle-content{
+
+    padding:24px;
+
+}
+
+.vehicle-type{
+
+    display:inline-block;
+    padding:6px 14px;
+    border-radius:30px;
+    background:rgba(20,241,217,.12);
+    color:#14f1d9;
+    font-size:12px;
+    font-weight:700;
+    margin-bottom:14px;
+
+}
+
+.vehicle-content h2{
+
+    margin-bottom:6px;
+    color:white;
+
+}
+
+.vehicle-content p{
+
+    color:#aeb8cb;
+    margin-bottom:20px;
+
+}
+
+.vehicle-info{
+
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+    margin-bottom:24px;
+
+}
+
+.vehicle-info small{
+
+    color:#8e98ab;
+    display:block;
+
+}
+
+.vehicle-info strong{
+
+    color:white;
+    font-size:18px;
+
+}
+
+.vehicle-actions{
+
+    display:flex;
+    gap:15px;
+
+}
+
+.vehicle-actions a{
+
+    flex:1;
+    text-align:center;
+    padding:12px;
+    border-radius:12px;
+    text-decoration:none;
+    font-weight:600;
+
+}
+
+.btn-primary{
+
+    background:linear-gradient(135deg,#14f1d9,#6d5dfc);
+    color:#06111f;
+
+}
+
+.btn-outline{
+
+    border:1px solid #14f1d9;
+    color:#14f1d9;
+
+}
+
+.empty-box{
+
+    background:#111827;
+    padding:70px;
+    border-radius:22px;
+    text-align:center;
+    border:1px solid rgba(255,255,255,.08);
+
+}
+
+.empty-box h2{
+
+    color:white;
+    margin-bottom:15px;
+
+}
+
+.empty-box p{
+
+    color:#aeb8cb;
+    margin-bottom:25px;
+
+}

@@ -1,0 +1,834 @@
+/* ===========================
+GOOGLE FONT
+=========================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+
+    background:#0b0f19;
+
+    color:#fff;
+
+    overflow-x:hidden;
+
+}
+
+
+/* ===========================
+BACKGROUND
+=========================== */
+
+body::before{
+
+    content:"";
+
+    position:fixed;
+
+    inset:0;
+
+    background:
+    radial-gradient(circle at top left,#00d4ff18,transparent 30%),
+    radial-gradient(circle at bottom right,#7b61ff18,transparent 35%);
+
+    z-index:-2;
+
+}
+
+body::after{
+
+    content:"";
+
+    position:fixed;
+
+    inset:0;
+
+    background:linear-gradient(
+    180deg,
+    rgba(0,0,0,.1),
+    rgba(0,0,0,.45));
+
+    z-index:-1;
+
+}
+
+
+/* ===========================
+HEADER
+=========================== */
+
+header{
+
+    width:100%;
+
+    position:fixed;
+
+    top:0;
+
+    left:0;
+
+    background:#0d111c;
+
+    border-bottom:1px solid rgba(255,255,255,.08);
+
+    z-index:1000;
+
+}
+
+.navbar{
+
+    width:90%;
+
+    max-width:1300px;
+
+    margin:auto;
+
+    height:80px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+.logo{
+
+    text-decoration:none;
+
+    font-size:34px;
+
+    font-weight:700;
+
+    color:#fff;
+
+}
+
+.logo i{
+
+    color:#00d4ff;
+
+    margin-right:8px;
+
+}
+
+.navbar ul{
+
+    display:flex;
+
+    list-style:none;
+
+    gap:40px;
+
+}
+
+.navbar ul li a{
+
+    color:#b7bfd3;
+
+    text-decoration:none;
+
+    transition:.3s;
+
+    font-weight:500;
+
+}
+
+.navbar ul li a:hover{
+
+    color:#00d4ff;
+
+}
+
+.active{
+
+    color:#00d4ff !important;
+
+}
+
+
+/* ===========================
+REGISTER SECTION
+=========================== */
+
+.register-section{
+
+    width:100%;
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:120px 20px 60px;
+
+}
+
+
+/* ===========================
+REGISTER CARD
+=========================== */
+
+.register-card{
+
+    width:1100px;
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    border-radius:25px;
+
+    overflow:hidden;
+
+    background:#121826;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    box-shadow:
+
+    0 20px 50px rgba(0,0,0,.45);
+
+}
+
+
+/* ===========================
+LEFT SIDE
+=========================== */
+
+.left{
+
+    padding:70px;
+
+    background:
+
+    radial-gradient(circle at top,#00d4ff15,transparent),
+
+    #141c2d;
+
+}
+
+.left h1{
+
+    font-size:54px;
+
+    margin-bottom:20px;
+
+    line-height:1.2;
+
+}
+
+.left span{
+
+    background:linear-gradient(
+    90deg,
+    #00d4ff,
+    #4e8cff,
+    #7d5cff);
+
+    -webkit-background-clip:text;
+
+    -webkit-text-fill-color:transparent;
+
+}
+
+.left p{
+
+    color:#9ca7bb;
+
+    line-height:1.8;
+
+    margin-bottom:40px;
+
+}
+
+.left img{
+
+    width:100%;
+
+    max-width:400px;
+
+}
+
+
+/* ===========================
+RIGHT SIDE
+=========================== */
+
+.right{
+
+    padding:60px;
+
+}
+
+.right h2{
+
+    font-size:38px;
+
+    margin-bottom:10px;
+
+}
+
+.subtitle{
+
+    color:#98a4b8;
+
+    margin-bottom:35px;
+
+}
+
+
+/* ===========================
+FORM
+=========================== */
+
+.input-box{
+
+    margin-bottom:22px;
+
+}
+
+.input-box label{
+
+    display:block;
+
+    margin-bottom:8px;
+
+    font-size:14px;
+
+    color:#d6d9df;
+
+}
+
+.input-box input{
+
+    width:100%;
+
+    height:58px;
+
+    padding:0 18px;
+
+    border-radius:15px;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    background:#0f1523;
+
+    color:white;
+
+    font-size:15px;
+
+    transition:.3s;
+
+}
+
+.input-box input::placeholder{
+
+    color:#808b9f;
+
+}
+
+.input-box input:focus{
+
+    outline:none;
+
+    border-color:#00d4ff;
+
+    box-shadow:
+
+    0 0 20px rgba(0,212,255,.2);
+
+}
+
+
+/* ===========================
+CHECKBOX
+=========================== */
+
+.terms{
+
+    display:flex;
+
+    gap:10px;
+
+    margin:25px 0;
+
+    color:#9ca7bb;
+
+    font-size:14px;
+
+}
+
+.terms input{
+
+    margin-top:4px;
+
+    accent-color:#00d4ff;
+
+}
+
+.terms a{
+
+    color:#00d4ff;
+
+    text-decoration:none;
+
+}
+
+
+/* ===========================
+BUTTON
+=========================== */
+
+.register-btn{
+
+    width:100%;
+
+    height:58px;
+
+    border:none;
+
+    border-radius:16px;
+
+    background:linear-gradient(
+    90deg,
+    #11d8ff,
+    #3f8dff,
+    #785dff);
+
+    color:white;
+
+    font-size:17px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.35s;
+
+}
+
+.register-btn:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+
+    0 18px 35px rgba(17,216,255,.25);
+
+}
+
+
+/* ===========================
+DIVIDER
+=========================== */
+
+.divider{
+
+    display:flex;
+
+    align-items:center;
+
+    margin:28px 0;
+
+    color:#7e8ca4;
+
+}
+
+.divider::before,
+
+.divider::after{
+
+    content:"";
+
+    flex:1;
+
+    height:1px;
+
+    background:rgba(255,255,255,.08);
+
+}
+
+.divider span{
+
+    margin:0 15px;
+
+}
+
+
+/* ===========================
+GOOGLE BUTTON
+=========================== */
+
+.google-btn{
+
+    width:100%;
+
+    height:56px;
+
+    border-radius:15px;
+
+    background:#0f1523;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    color:white;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:12px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.google-btn img{
+
+    width:22px;
+
+}
+
+.google-btn:hover{
+
+    background:#161f31;
+
+}
+
+
+/* ===========================
+LOGIN TEXT
+=========================== */
+
+.login-text{
+
+    text-align:center;
+
+    margin-top:28px;
+
+    color:#97a4ba;
+
+}
+
+.login-text a{
+
+    color:#00d4ff;
+
+    text-decoration:none;
+
+    font-weight:600;
+
+}
+
+
+/* ===========================
+FOOTER
+=========================== */
+
+footer{
+
+    text-align:center;
+
+    padding:30px;
+
+    color:#76829a;
+
+    border-top:1px solid rgba(255,255,255,.05);
+
+}
+
+
+/* ===========================
+ERRORS
+=========================== */
+
+.errorlist{
+
+    list-style:none;
+
+    color:#ff6b6b;
+
+    font-size:13px;
+
+    margin-top:6px;
+
+}
+
+
+/* ===========================
+RESPONSIVE
+=========================== */
+
+@media(max-width:1000px){
+
+.register-card{
+
+grid-template-columns:1fr;
+
+}
+
+.left{
+
+text-align:center;
+
+padding:50px;
+
+}
+
+.left img{
+
+width:75%;
+
+}
+
+.right{
+
+padding:40px;
+
+}
+
+}
+
+@media(max-width:768px){
+
+.navbar{
+
+flex-direction:column;
+
+height:auto;
+
+padding:20px 0;
+
+}
+
+.navbar ul{
+
+margin-top:15px;
+
+gap:20px;
+
+flex-wrap:wrap;
+
+justify-content:center;
+
+}
+
+.left h1{
+
+font-size:40px;
+
+}
+
+.right{
+
+padding:30px;
+
+}
+
+}
+
+/* ==========================
+   FORM ERRORS
+========================== */
+
+.form-errors{
+    margin-bottom:18px;
+}
+
+.error-message{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding:12px 15px;
+    margin-bottom:10px;
+    border-radius:10px;
+    background:#ffeded;
+    border-left:4px solid #ff4d4f;
+    color:#d63031;
+    font-size:14px;
+    font-weight:500;
+}
+
+.field-error{
+    margin-top:8px;
+}
+
+.field-error small{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    color:#ff4d4f;
+    font-size:13px;
+    font-weight:500;
+    line-height:1.4;
+}
+
+.field-error i,
+.error-message i{
+    font-size:13px;
+}
+
+/* ==========================
+   BOARDO TOAST POPUP MESSAGE
+========================== */
+
+.message-toggle {
+
+    position: fixed;
+
+    top: 100px;
+
+    right: 30px;
+
+    min-width: 350px;
+
+    max-width: 420px;
+
+    padding: 18px 22px;
+
+    border-radius: 18px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+
+    color:white;
+
+    font-size:15px;
+
+    font-weight:500;
+
+    z-index:9999;
+
+    backdrop-filter:blur(18px);
+
+    animation:
+        popupIn .5s ease,
+        popupOut .5s ease 4s forwards;
+
+}
+
+
+/* SUCCESS MESSAGE */
+
+.success-toggle {
+
+    background:
+    linear-gradient(
+        135deg,
+        rgba(0,229,216,.25),
+        rgba(0,229,216,.08)
+    );
+
+    border:1px solid #00E5D8;
+
+    box-shadow:
+    0 15px 40px rgba(0,229,216,.25);
+
+}
+
+
+.success-toggle i {
+
+    color:#00E5D8;
+
+    font-size:22px;
+
+}
+
+
+
+/* ERROR MESSAGE */
+
+.error-toggle {
+
+    background:
+    linear-gradient(
+        135deg,
+        rgba(255,70,70,.25),
+        rgba(255,70,70,.08)
+    );
+
+    border:1px solid #ff4646;
+
+    box-shadow:
+    0 15px 40px rgba(255,70,70,.25);
+
+}
+
+
+.error-toggle i {
+
+    color:#ff6b6b;
+
+    font-size:22px;
+
+}
+
+
+
+/* POPUP ENTER */
+
+@keyframes popupIn {
+
+    from {
+
+        opacity:0;
+
+        transform:translateX(120px);
+
+    }
+
+
+    to {
+
+        opacity:1;
+
+        transform:translateX(0);
+
+    }
+
+}
+
+
+
+/* POPUP EXIT */
+
+@keyframes popupOut {
+
+    from {
+
+        opacity:1;
+
+        transform:translateX(0);
+
+    }
+
+
+    to {
+
+        opacity:0;
+
+        transform:translateX(120px);
+
+    }
+
+}

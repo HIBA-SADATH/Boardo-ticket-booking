@@ -1,0 +1,209 @@
+body{
+
+    background:#0d1117;
+
+}
+
+/* Page */
+
+.agency-container{
+
+    max-width:1400px;
+
+    margin:40px auto;
+
+    padding:0 25px;
+
+}
+
+.agency-header{
+
+    margin-bottom:35px;
+
+}
+
+.agency-header h1{
+
+    color:#fff;
+
+    font-size:36px;
+
+}
+
+.agency-header p{
+
+    color:#8c95a8;
+
+}
+
+/* Grid */
+
+.agency-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fill,minmax(320px,1fr));
+
+    gap:30px;
+
+}
+
+/* Card */
+
+.agency-card{
+
+    background:#171c28;
+
+    border-radius:18px;
+
+    padding:30px;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    transition:.3s;
+
+}
+
+.agency-card:hover{
+
+    transform:translateY(-6px);
+
+    border-color:#00E5D8;
+
+}
+
+/* Avatar */
+
+.agency-avatar{
+
+    width:80px;
+
+    height:80px;
+
+    border-radius:50%;
+
+    margin:auto;
+
+    background:linear-gradient(135deg,#00E5D8,#7B5CFA);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    color:white;
+
+    font-size:34px;
+
+    font-weight:bold;
+
+}
+
+.agency-card h2{
+
+    text-align:center;
+
+    margin:20px 0 8px;
+
+    color:white;
+
+}
+
+.agency-role{
+
+    display:block;
+
+    text-align:center;
+
+    color:#00E5D8;
+
+    margin-bottom:25px;
+
+}
+
+/* Details */
+
+.agency-info{
+
+    border-top:1px solid rgba(255,255,255,.08);
+
+    padding-top:20px;
+
+}
+
+.agency-info p{
+
+    color:#c6ccd7;
+
+    margin-bottom:18px;
+
+    line-height:1.6;
+
+}
+
+/* Buttons */
+
+.agency-actions{
+
+    display:flex;
+
+    gap:15px;
+
+    margin-top:25px;
+
+}
+
+.edit-btn{
+
+    flex:1;
+
+    background:#00E5D8;
+
+    color:#111;
+
+    padding:12px;
+
+    border-radius:10px;
+
+    text-align:center;
+
+    text-decoration:none;
+
+    font-weight:600;
+
+}
+
+.delete-btn{
+
+    flex:1;
+
+    background:#ff4f6f;
+
+    color:white;
+
+    padding:12px;
+
+    border-radius:10px;
+
+    text-align:center;
+
+    text-decoration:none;
+
+    font-weight:600;
+
+}
+
+.empty-card{
+
+    background:#171c28;
+
+    padding:80px;
+
+    border-radius:20px;
+
+    text-align:center;
+
+    color:white;
+
+}

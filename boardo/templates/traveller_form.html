@@ -1,0 +1,222 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/traveller.css' %}">
+
+
+<!-- ================= MESSAGE TOAST ================= -->
+
+{% if messages %}
+
+<div class="toast-container">
+
+    {% for message in messages %}
+
+    <div class="toast-message {{ message.tags }}">
+
+        <div class="toast-content">
+
+            <span class="toast-icon">
+                ✓
+            </span>
+
+            <span>
+                {{ message }}
+            </span>
+
+        </div>
+
+
+        <button 
+            class="toast-close"
+            onclick="this.parentElement.remove()">
+
+            ×
+
+        </button>
+
+    </div>
+
+    {% endfor %}
+
+</div>
+
+{% endif %}
+
+
+
+
+<div class="form-container">
+
+
+    <div class="form-card">
+
+
+        <h1>
+            {{ title }}
+        </h1>
+
+
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+
+
+            <div class="form-grid">
+
+
+
+                <div>
+
+                    <label>
+                        Full Name
+                    </label>
+
+                    {{ form.full_name }}
+
+                </div>
+
+
+
+
+
+                <div>
+
+                    <label>
+                        Age
+                    </label>
+
+                    {{ form.age }}
+
+                </div>
+
+
+
+
+
+                <div>
+
+                    <label>
+                        Gender
+                    </label>
+
+                    {{ form.gender }}
+
+                </div>
+
+
+
+
+
+                <div>
+
+                    <label>
+                        Phone
+                    </label>
+
+                    {{ form.phone }}
+
+                </div>
+
+
+
+
+
+                <div>
+
+                    <label>
+                        Email
+                    </label>
+
+                    {{ form.email }}
+
+                </div>
+
+
+
+
+
+                <div>
+
+                    <label>
+                        ID Proof
+                    </label>
+
+                    {{ form.id_proof }}
+
+                </div>
+
+
+
+
+
+                <div class="full-width">
+
+                    <label>
+                        ID Number
+                    </label>
+
+                    {{ form.id_number }}
+
+                </div>
+
+
+
+            </div>
+
+
+
+
+
+            <button 
+                type="submit"
+                class="btn-primary">
+
+                {{ button }}
+
+            </button>
+
+
+
+        </form>
+
+
+    </div>
+
+
+</div>
+
+
+
+
+
+<script>
+
+setTimeout(function(){
+
+    const toast = document.querySelector(".toast-message");
+
+    if(toast){
+
+        toast.style.opacity = "0";
+
+        setTimeout(function(){
+
+            toast.remove();
+
+        },500);
+
+    }
+
+},3000);
+
+
+</script>
+
+
+
+{% endblock %}

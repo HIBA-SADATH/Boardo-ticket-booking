@@ -1,0 +1,320 @@
+{% extends 'agency_base.html' %}
+{% load humanize %}
+
+{% block title %}
+Agency Report | Voyago
+{% endblock %}
+
+{% block content2 %}
+<link rel="stylesheet" href="{% static 'css/agency_base.css'}">
+
+<div class="container py-5">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2 class="fw-bold mb-1">Agency Report</h2>
+            <p class="text-muted mb-0">
+                Overview of your business performance
+            </p>
+        </div>
+    </div>
+
+    <!-- Summary -->
+
+    <div class="row g-4">
+
+        <div class="col-lg-3 col-md-6">
+            <div class="card border-0 shadow-sm rounded-4">
+                <div class="card-body text-center">
+
+                    <h6 class="text-muted">
+                        Total Trips
+                    </h6>
+
+                    <h2 class="fw-bold text-primary">
+                        {{ total_trips }}
+                    </h2>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+            <div class="card border-0 shadow-sm rounded-4">
+                <div class="card-body text-center">
+
+                    <h6 class="text-muted">
+                        Bookings
+                    </h6>
+
+                    <h2 class="fw-bold text-success">
+                        {{ total_bookings }}
+                    </h2>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+            <div class="card border-0 shadow-sm rounded-4">
+                <div class="card-body text-center">
+
+                    <h6 class="text-muted">
+                        Revenue
+                    </h6>
+
+                    <h2 class="fw-bold text-danger">
+                        ₹{{ total_revenue|intcomma }}
+                    </h2>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+            <div class="card border-0 shadow-sm rounded-4">
+                <div class="card-body text-center">
+
+                    <h6 class="text-muted">
+                        Seats Sold
+                    </h6>
+
+                    <h2 class="fw-bold text-warning">
+                        {{ seats_sold }}
+                    </h2>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Popular Trips -->
+
+    <div class="card border-0 shadow-sm rounded-4 mt-5">
+
+        <div class="card-header bg-white">
+            <h4 class="mb-0">
+                Most Booked Trips
+            </h4>
+        </div>
+
+        <div class="table-responsive">
+
+            <table class="table table-hover align-middle mb-0">
+
+                <thead class="table-light">
+
+                    <tr>
+
+                        <th>Route</th>
+
+                        <th>Date</th>
+
+                        <th>Bookings</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for trip in popular_trips %}
+
+                    <tr>
+
+                        <td>
+                            {{ trip.source }} → {{ trip.destination }}
+                        </td>
+
+                        <td>
+                            {{ trip.departure_date }}
+                        </td>
+
+                        <td>
+
+                            <span class="badge bg-primary">
+                                {{ trip.booking_count }}
+                            </span>
+
+                        </td>
+
+                    </tr>
+
+                    {% empty %}
+
+                    <tr>
+
+                        <td colspan="3" class="text-center py-4">
+                            No trips found.
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+    <!-- Recent Bookings -->
+
+    <div class="card border-0 shadow-sm rounded-4 mt-5">
+
+        <div class="card-header bg-white">
+            <h4 class="mb-0">
+                Recent Bookings
+            </h4>
+        </div>
+
+        <div class="table-responsive">
+
+            <table class="table table-hover align-middle mb-0">
+
+                <thead class="table-light">
+
+                    <tr>
+
+                        <th>Customer</th>
+
+                        <th>Trip</th>
+
+                        <th>Amount</th>
+
+                        <th>Date</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for booking in recent_bookings %}
+
+                    <tr>
+
+                        <td>
+
+                            {{ booking.profile.user.username }}
+
+                        </td>
+
+                        <td>
+
+                            {{ booking.trip.source }}
+                            →
+                            {{ booking.trip.destination }}
+
+                        </td>
+
+                        <td>
+
+                            ₹{{ booking.amount|intcomma }}
+
+                        </td>
+
+                        <td>
+
+                            {{ booking.created_at|date:"d M Y" }}
+
+                        </td>
+
+                    </tr>
+
+                    {% empty %}
+
+                    <tr>
+
+                        <td colspan="4" class="text-center py-4">
+
+                            No bookings yet.
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+    <!-- Reviews -->
+
+    <div class="card border-0 shadow-sm rounded-4 mt-5">
+
+        <div class="card-header bg-white">
+
+            <h4 class="mb-0">
+                Customer Reviews
+            </h4>
+
+        </div>
+
+        <div class="card-body">
+
+            {% for review in reviews %}
+
+            <div class="border-bottom pb-3 mb-3">
+
+                <div class="d-flex justify-content-between">
+
+                    <strong>
+
+                        {{ review.profile.user.username }}
+
+                    </strong>
+
+                    <span class="text-warning">
+
+                        {% for i in "12345" %}
+
+                            {% if forloop.counter <= review.rating %}
+                                ⭐
+                            {% endif %}
+
+                        {% endfor %}
+
+                    </span>
+
+                </div>
+
+                <p class="mt-2 mb-1">
+
+                    {{ review.comment }}
+
+                </p>
+
+                <small class="text-muted">
+
+                    {{ review.created_at|date:"d M Y H:i" }}
+
+                </small>
+
+            </div>
+
+            {% empty %}
+
+            <p class="text-muted text-center">
+
+                No reviews available.
+
+            </p>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

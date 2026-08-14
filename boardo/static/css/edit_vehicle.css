@@ -1,0 +1,191 @@
+/* ==========================
+   Edit Vehicle Page
+========================== */
+
+.container{
+
+    width:90%;
+
+    max-width:700px;
+
+    margin:40px auto;
+
+}
+
+.card{
+
+    background:#1e293b;
+
+    border:1px solid #334155;
+
+    border-radius:10px;
+
+    padding:30px;
+
+}
+
+.card h2{
+
+    text-align:center;
+
+    color:white;
+
+    margin-bottom:25px;
+
+}
+
+
+/* ==========================
+   Form
+========================== */
+
+form p{
+
+    margin-bottom:18px;
+
+}
+
+label{
+
+    display:block;
+
+    margin-bottom:6px;
+
+    color:#cbd5e1;
+
+    font-weight:bold;
+
+}
+
+input,
+select,
+textarea{
+
+    width:100%;
+
+    padding:10px;
+
+    border:1px solid #475569;
+
+    border-radius:6px;
+
+    background:#0f172a;
+
+    color:white;
+
+    font-size:14px;
+
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+
+    outline:none;
+
+    border-color:#0ea5e9;
+
+}
+
+
+/* ==========================
+   File Upload
+========================== */
+
+input[type="file"]{
+
+    padding:8px;
+
+    background:#1e293b;
+
+}
+
+
+/* ==========================
+   Buttons
+========================== */
+
+.button-group{
+
+    margin-top:25px;
+
+    display:flex;
+
+    gap:10px;
+
+}
+
+.btn{
+
+    padding:10px 20px;
+
+    border:none;
+
+    border-radius:6px;
+
+    text-decoration:none;
+
+    font-size:14px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+}
+
+.btn-success{
+
+    background:#22c55e;
+
+    color:white;
+
+}
+
+.btn-success:hover{
+
+    background:#16a34a;
+
+}
+
+.btn-secondary{
+
+    background:#64748b;
+
+    color:white;
+
+}
+
+.btn-secondary:hover{
+
+    background:#475569;
+
+}
+
+
+/* ==========================
+   Responsive
+========================== */
+
+@media(max-width:768px){
+
+.container{
+
+    width:95%;
+
+}
+
+.button-group{
+
+    flex-direction:column;
+
+}
+
+.btn{
+
+    width:100%;
+
+    text-align:center;
+
+}
+
+}

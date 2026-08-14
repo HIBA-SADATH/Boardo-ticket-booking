@@ -1,0 +1,264 @@
+/* ==========================================================
+   Boardo — Traveller Details
+   Same design tokens as seat_selection.css for consistency.
+   ========================================================== */
+
+:root{
+  --bd-bg:            #090c15;
+  --bd-bg-soft:       #0d111f;
+  --bd-card:          #121729;
+  --bd-border:        rgba(255,255,255,0.08);
+  --bd-border-strong: rgba(255,255,255,0.16);
+  --bd-text:          #f5f7fb;
+  --bd-text-dim:      #93a0bd;
+  --bd-text-faint:    #f5f7fb;
+
+  --bd-teal:          #2dd9c4;
+  --bd-blue:          #5b7cfa;
+  --bd-gradient:       linear-gradient(120deg, var(--bd-teal), var(--bd-blue));
+  --bd-gradient-soft:  linear-gradient(120deg, rgba(45,217,196,0.14), rgba(91,124,250,0.14));
+
+  --bd-radius-lg:     20px;
+  --bd-radius-md:     14px;
+  --bd-radius-sm:     10px;
+  --bd-radius-pill:   999px;
+}
+
+*{ box-sizing: border-box; }
+
+.traveller-page{
+  background: var(--bd-bg);
+  min-height: 100vh;
+  padding: 48px 24px 80px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: var(--bd-text);
+}
+
+.traveller-page .card{
+  max-width: 760px;
+  margin: 0 auto;
+  background: var(--bd-card);
+  border: 1px solid var(--bd-border);
+  border-radius: var(--bd-radius-lg);
+  padding: 36px 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+.traveller-page .card::before{
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 3px;
+  background: var(--bd-gradient);
+  opacity: 0.9;
+}
+
+/* ---------------- Header ---------------- */
+
+.card-header{
+  margin-bottom: 28px;
+}
+
+.card-header h1{
+  margin: 0 0 6px;
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: aqua;
+}
+
+.card-header p{
+  margin: 0;
+  color: var(--bd-text-dim);
+  font-size: 0.92rem;
+  
+}
+
+/* ---------------- Trip Summary ---------------- */
+
+.trip-summary{
+  background: var(--bd-bg-soft);
+  border: 1px solid var(--bd-border);
+  border-radius: var(--bd-radius-md);
+  padding: 18px 22px;
+  margin-bottom: 28px;
+}
+
+.trip-summary h3{
+  margin: 0 0 10px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #93a0bd;
+}
+
+.trip-summary p{
+  margin: 4px 0;
+  font-size: 0.86rem;
+  color: var(--bd-text-dim);
+  
+}
+
+.trip-summary p strong{
+  color: var(--bd-text);
+  font-weight: 600;
+}
+
+/* ---------------- Seat Cards ---------------- */
+
+.seat-card{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  background: var(--bd-bg-soft);
+  border: 1px solid var(--bd-border);
+  border-radius: var(--bd-radius-md);
+  padding: 18px 22px;
+  margin-bottom: 14px;
+  transition: border-color 0.15s ease;
+}
+
+.seat-card:hover{
+  border-color: var(--bd-border-strong);
+}
+
+.seat-info h3{
+  margin: 0 0 4px;
+  font-size: 0.98rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: aliceblue;
+}
+
+.seat-info h3::before{
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--bd-gradient);
+  display: inline-block;
+}
+
+.seat-info p{
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--bd-text-dim);
+}
+
+.seat-select{
+  flex: 1;
+  min-width: 240px;
+  max-width: 340px;
+}
+
+.seat-select select{
+  width: 100%;
+  appearance: none;
+  -webkit-appearance: none;
+  background: var(--bd-card)
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%2393a0bd' d='M1 1l5 5 5-5'/%3E%3C/svg%3E")
+    no-repeat right 16px center;
+  border: 1px solid var(--bd-border-strong);
+  border-radius: var(--bd-radius-sm);
+  padding: 11px 40px 11px 16px;
+  font-size: 0.88rem;
+  color: var(--bd-text);
+  cursor: pointer;
+  transition: border-color 0.15s ease;
+}
+
+.seat-select select:hover{
+  border-color: var(--bd-teal);
+}
+
+.seat-select select:focus{
+  outline: none;
+  border-color: var(--bd-teal);
+  box-shadow: 0 0 0 3px rgba(45,217,196,0.15);
+}
+
+.seat-select select option{
+  background: var(--bd-card);
+  color: var(--bd-text);
+}
+
+/* ---------------- Empty State ---------------- */
+
+.empty-state{
+  text-align: center;
+  padding: 48px 20px;
+  color: var(--bd-text-dim);
+}
+
+.empty-state h3{
+  margin: 0 0 8px;
+  color: var(--bd-text);
+  font-size: 1.1rem;
+}
+
+.empty-state p{
+  margin: 0;
+  font-size: 0.88rem;
+}
+
+/* ---------------- Actions ---------------- */
+
+.form-actions{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid var(--bd-border);
+}
+
+.add-btn{
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: 1px solid var(--bd-border-strong);
+  border-radius: var(--bd-radius-pill);
+  padding: 12px 22px;
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--bd-text-dim);
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+
+.add-btn:hover{
+  border-color: var(--bd-teal);
+  color: var(--bd-text);
+}
+
+.continue-btn{
+  border: none;
+  border-radius: var(--bd-radius-pill);
+  background: var(--bd-gradient);
+  color: #0a0e1a;
+  padding: 13px 28px;
+  font-size: 0.92rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: filter 0.15s ease, transform 0.15s ease;
+}
+
+.continue-btn:hover{
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 560px){
+  .traveller-page .card{ padding: 28px 22px; }
+  .seat-card{ flex-direction: column; align-items: flex-start; }
+  .seat-select{ max-width: 100%; }
+  .form-actions{ flex-direction: column-reverse; align-items: stretch; }
+  .add-btn, .continue-btn{ text-align: center; justify-content: center; }
+}

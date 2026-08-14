@@ -1,0 +1,184 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/form.css' %}">
+
+
+<div class="category-page">
+
+
+    <div class="category-card">
+
+
+        <p class="eyebrow">
+            ITINERARY MANAGEMENT
+        </p>
+
+
+        <h2 class="category-title">
+            Add Stop
+        </h2>
+
+
+        <p class="category-subtitle">
+            Add a boarding point or stop to your travel route.
+        </p>
+
+
+
+        <div class="route-card">
+
+
+            <div class="route-point">
+
+                <small>
+                    From
+                </small>
+
+                <strong>
+                    {{ trip.source }}
+                </strong>
+
+            </div>
+
+
+
+            <div class="route-icon">
+
+                →
+
+            </div>
+
+
+
+            <div class="route-point">
+
+                <small>
+                    To
+                </small>
+
+                <strong>
+                    {{ trip.destination }}
+                </strong>
+
+            </div>
+
+
+        </div>
+
+
+
+
+        <form method="POST" class="category-form">
+
+
+            {% csrf_token %}
+
+
+
+            {% if form.non_field_errors %}
+
+            <div class="form-errors">
+
+                {{ form.non_field_errors }}
+
+            </div>
+
+            {% endif %}
+
+
+
+
+            {% for field in form %}
+
+
+            <div class="form-group">
+
+
+                <label for="{{ field.id_for_label }}">
+
+                    {{ field.label }}
+
+                </label>
+
+
+
+                {{ field }}
+
+
+
+                {% if field.help_text %}
+
+                <small class="field-hint">
+
+                    {{ field.help_text }}
+
+                </small>
+
+                {% endif %}
+
+
+
+
+                {% if field.errors %}
+
+                <div class="field-error">
+
+                    {{ field.errors|striptags }}
+
+                </div>
+
+                {% endif %}
+
+
+
+            </div>
+
+
+            {% endfor %}
+
+
+
+
+
+            <div class="form-actions">
+
+
+                <button
+                    type="submit"
+                    class="btn btn-primary">
+
+                    Add Stop
+
+                </button>
+
+
+
+
+                <a
+                    href="{% url 'agencydashboard' %}"
+                    class="btn btn-secondary">
+
+                    Cancel
+
+                </a>
+
+
+            </div>
+
+
+
+        </form>
+
+
+
+    </div>
+
+
+</div>
+
+
+
+{% endblock %}

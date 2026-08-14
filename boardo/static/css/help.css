@@ -1,0 +1,337 @@
+/* ==========================================================
+   Boardo — Help Center
+   All selectors below use page-specific class names
+   (help-*, faq-*, ticket-*, recent-*) instead of Bootstrap's
+   own vocabulary (row / col-lg-* / btn / w-100) to avoid
+   the base template's global Bootstrap CSS overriding this.
+   ========================================================== */
+
+:root{
+  --bd-bg:            #090c15;
+  --bd-bg-soft:       #0d111f;
+  --bd-card:          #121729;
+  --bd-border:        rgba(255,255,255,0.08);
+  --bd-border-strong: rgba(255,255,255,0.16);
+  --bd-text:          #f5f7fb;
+  --bd-text-dim:      #93a0bd;
+  --bd-text-faint:    #5c657f;
+
+  --bd-teal:          #2dd9c4;
+  --bd-blue:          #5b7cfa;
+  --bd-gradient:       linear-gradient(120deg, var(--bd-teal), var(--bd-blue));
+  --bd-gradient-soft:  linear-gradient(120deg, rgba(45,217,196,0.14), rgba(91,124,250,0.14));
+
+  --bd-amber:         #f0b955;
+  --bd-amber-soft:    rgba(240,185,85,0.14);
+  --bd-red:           #f0708a;
+  --bd-red-soft:      rgba(240,112,138,0.14);
+  --bd-green:         #4fd0a0;
+  --bd-green-soft:    rgba(79,208,160,0.14);
+
+  --bd-radius-lg:     20px;
+  --bd-radius-md:     14px;
+  --bd-radius-sm:     10px;
+  --bd-radius-pill:   999px;
+}
+
+.help-page,
+.help-page *{
+  box-sizing: border-box;
+}
+
+.help-page{
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 48px 24px 80px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: var(--bd-text);
+  background: var(--bd-bg);
+}
+
+.help-title{
+  margin: 0 0 6px;
+  font-size: 1.9rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.help-subtitle{
+  margin: 0 0 32px;
+  color: var(--bd-text-dim);
+  font-size: 0.95rem;
+}
+
+/* ---------------- Grid ---------------- */
+
+.help-grid{
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(280px, 1fr);
+  gap: 28px;
+  width: 100%;
+  margin: 0 0 40px;
+}
+
+.help-main, .help-side{
+  min-width: 0;
+  width: 100%;
+}
+
+@media (max-width: 900px){
+  .help-grid{ grid-template-columns: 1fr; }
+}
+
+/* ---------------- FAQ grid ---------------- */
+
+.faq-grid{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  width: 100%;
+}
+
+@media (max-width: 640px){
+  .faq-grid{ grid-template-columns: 1fr; }
+}
+
+.faq-card{
+  background: var(--bd-card);
+  border: 1px solid var(--bd-border);
+  border-radius: var(--bd-radius-md);
+  padding: 20px 22px;
+  transition: border-color 0.15s ease;
+}
+
+.faq-card:hover{
+  border-color: var(--bd-border-strong);
+}
+
+.faq-card h5{
+  margin: 0 0 8px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--bd-text);
+}
+
+.faq-card p{
+  margin: 0;
+  font-size: 0.84rem;
+  color: var(--bd-text-dim);
+  line-height: 1.5;
+}
+
+.faq-empty{
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--bd-text-faint);
+  font-size: 0.9rem;
+  background: var(--bd-card);
+  border: 1px dashed var(--bd-border-strong);
+  border-radius: var(--bd-radius-md);
+}
+
+/* ---------------- Ticket card / form ---------------- */
+
+.ticket-card{
+  background: var(--bd-card);
+  border: 1px solid var(--bd-border);
+  border-radius: var(--bd-radius-lg);
+  padding: 26px 26px 28px;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.ticket-card::before{
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 3px;
+  background: var(--bd-gradient);
+  opacity: 0.9;
+}
+
+.ticket-card h4{
+  margin: 0 0 20px;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.ticket-card form{
+  width: 100%;
+}
+
+.ticket-card form p{
+  margin: 0 0 16px;
+  width: 100%;
+}
+
+.ticket-card form label{
+  display: block;
+  margin: 0 0 6px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--bd-text-faint);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.ticket-card form input,
+.ticket-card form textarea,
+.ticket-card form select{
+  display: block;
+  width: 100%;
+  background: var(--bd-bg-soft);
+  border: 1px solid var(--bd-border-strong);
+  border-radius: var(--bd-radius-sm);
+  padding: 11px 14px;
+  font-size: 0.88rem;
+  font-family: inherit;
+  color: var(--bd-text);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.ticket-card form textarea{
+  min-height: 110px;
+  resize: vertical;
+}
+
+.ticket-card form select{
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%2393a0bd' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 36px;
+}
+
+.ticket-card form input::placeholder,
+.ticket-card form textarea::placeholder{
+  color: var(--bd-text-faint);
+}
+
+.ticket-card form input:focus,
+.ticket-card form textarea:focus,
+.ticket-card form select:focus{
+  outline: none;
+  border-color: var(--bd-teal);
+  box-shadow: 0 0 0 3px rgba(45,217,196,0.15);
+}
+
+.ticket-card form ul.errorlist{
+  list-style: none;
+  margin: -10px 0 14px;
+  padding: 0;
+  color: var(--bd-red);
+  font-size: 0.78rem;
+}
+
+.ticket-submit-btn{
+  display: block;
+  width: 100%;
+  border: none;
+  border-radius: var(--bd-radius-pill);
+  background: var(--bd-gradient);
+  color: #0a0e1a;
+  padding: 13px 20px;
+  font-size: 0.92rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 4px;
+  white-space: nowrap;
+  transition: filter 0.15s ease, transform 0.15s ease;
+}
+
+.ticket-submit-btn:hover{
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+}
+
+/* ---------------- Recent tickets ---------------- */
+
+.help-divider{
+  border: none;
+  border-top: 1px solid var(--bd-border);
+  margin: 12px 0 32px;
+}
+
+.recent-title{
+  margin: 0 0 20px;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.recent-ticket{
+  background: var(--bd-card);
+  border: 1px solid var(--bd-border);
+  border-radius: var(--bd-radius-md);
+  padding: 18px 22px;
+  margin-bottom: 14px;
+  position: relative;
+}
+
+.recent-ticket h5{
+  margin: 0 0 6px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  padding-right: 90px;
+}
+
+.recent-ticket p{
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--bd-text-dim);
+  line-height: 1.5;
+}
+
+.ticket-status{
+  position: absolute;
+  top: 18px;
+  right: 22px;
+  display: inline-block;
+  background: var(--bd-bg-soft);
+  border: 1px solid var(--bd-border-strong);
+  border-radius: var(--bd-radius-pill);
+  padding: 4px 12px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--bd-text-dim);
+  text-transform: capitalize;
+  white-space: nowrap;
+}
+
+/* Status badge colour variants, matched via status-{{ ticket.status|slugify }} */
+.ticket-status.status-open,
+.ticket-status.status-in-progress{
+  background: var(--bd-amber-soft);
+  border-color: rgba(240,185,85,0.4);
+  color: var(--bd-amber);
+}
+
+.ticket-status.status-resolved,
+.ticket-status.status-closed{
+  background: var(--bd-green-soft);
+  border-color: rgba(79,208,160,0.4);
+  color: var(--bd-green);
+}
+
+.ticket-status.status-pending{
+  background: var(--bd-red-soft);
+  border-color: rgba(240,112,138,0.4);
+  color: var(--bd-red);
+}
+
+.empty{
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--bd-text-faint);
+  font-size: 0.9rem;
+  background: var(--bd-card);
+  border: 1px dashed var(--bd-border-strong);
+  border-radius: var(--bd-radius-md);
+}
+
+@media (max-width: 480px){
+  .recent-ticket h5{ padding-right: 0; margin-bottom: 24px; }
+  .ticket-status{ top: 18px; right: auto; left: 22px; }
+}

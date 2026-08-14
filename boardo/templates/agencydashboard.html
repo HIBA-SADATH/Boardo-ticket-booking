@@ -1,0 +1,313 @@
+{% extends 'agency_base.html' %}
+{% load static %}
+
+{% block title %}
+Agency Dashboard | Boardo
+{% endblock %}
+
+{% block content2 %}
+
+<link rel="stylesheet" href="{% static 'css/agencydashboard.css' %}">
+
+<div class="dashboard-container">
+
+<!-- ================= HEADER ================= -->
+
+<section class="dashboard-header">
+
+    <div>
+        <h1>{{ request.user.username }}</h1>
+        <p>Manage your vehicles, trips and customer bookings.</p>
+    </div>
+
+    <div class="header-buttons">
+
+        <a href="{% url 'add_vehicle' %}" class="btn btn-primary">
+            + Add Vehicle
+        </a>
+
+        <a href="{% url 'add_trip' %}" class="btn btn-success">
+            + Add Trip
+        </a>
+
+    </div>
+
+</section>
+
+<!-- ================= STATS ================= -->
+
+<section class="stats-grid">
+
+    <div class="stat-card">
+        <span>Vehicles</span>
+        <h2>{{ vehicles.count }}</h2>
+    </div>
+
+    <div class="stat-card">
+        <span>Trips</span>
+        <h2>{{ trips.count }}</h2>
+    </div>
+
+    <div class="stat-card">
+        <span>Bookings</span>
+        <h2>{{ bookings.count }}</h2>
+    </div>
+
+    <div class="stat-card">
+        <span>Revenue</span>
+        <h2>₹ {{ revenue|default:"0" }}</h2>
+    </div>
+
+</section>
+
+<!-- ================= VEHICLES ================= -->
+
+<section id ='vehicles' class="dashboard-card">
+
+    <div class="card-top">
+
+        <h3>Vehicles</h3>
+
+        <a href="{% url 'add_vehicle' %}" class="btn btn-primary btn-sm">
+            + Add Vehicle
+        </a>
+
+    </div>
+
+    <div class="table-wrapper">
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>Vehicle No</th>
+                    <th>Name</th>
+                    <th>type</th>
+                    <th>model</th>
+                    <th>Seats</th>
+                    <th>Action</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% for vehicle in vehicles %}
+
+                <tr>
+
+                    <td>{{ vehicle.vehicle_number }}</td>
+
+                    <td>{{ vehicle.name }}</td>
+
+                    <td>{{ vehicle.type }}</td>
+
+                    <td>{{ vehicle.model }}</td>
+
+                    <td>{{ vehicle.total_seats }}</td>
+
+                    <td>
+
+                        <a href="{% url 'edit_vehicle' vehicle.id %}"
+                           class="btn btn-warning btn-sm">
+                            Edit
+                        </a>
+
+                        <a href="{% url 'delete_vehicle' vehicle.id %}"
+                           class="btn btn-danger btn-sm"
+                           onclick="return confirm('Delete this vehicle?');">
+                            Delete
+                        </a>
+
+                    </td>
+
+                </tr>
+
+                {% empty %}
+
+                <tr>
+                    <td colspan="6">
+                        No vehicles added yet.
+                    </td>
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+<!-- ================= TRIPS ================= -->
+
+<section id ="trips" class="dashboard-card">
+
+    <div class="card-top">
+
+        <h3>Trips</h3>
+
+        <a href="{% url 'add_trip' %}" class="btn btn-success btn-sm">
+            + Add Trip
+        </a>
+
+    </div>
+
+    <div class="table-wrapper">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>Vehicle</th>
+                    <th>Route</th>
+                    <th>Departure</th>
+                    <th>Arrival</th>
+                    <th>Fare</th>
+                    <th>Seats</th>
+                    <th>Action</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% for trip in trips %}
+
+                <tr>
+
+                    <td>{{ trip.vehicle.vehicle_number }}</td>
+
+                    <td>
+                        {{ trip.source }} →
+                        {{ trip.destination }}
+                    </td>
+
+                    <td>{{ trip.departure_time }}</td>
+
+                    <td>{{ trip.arrival_time }}</td>
+
+                    <td>₹ {{ trip.fare }}</td>
+
+                    <td>{{ trip.available_seats }}</td>
+
+                    <td>
+
+                        <a href="{% url 'add_stop' trip.id %}"
+                           class="btn btn-info btn-sm">
+                            Stop
+                        </a>
+
+                        <a href="{% url 'edit_trip' trip.id %}"
+                           class="btn btn-warning btn-sm">
+                            Edit
+                        </a>
+
+                        <a href="{% url 'delete_trip' trip.id %}"
+                           class="btn btn-danger btn-sm"
+                           onclick="return confirm('Delete this trip?');">
+                            Delete
+                        </a>
+
+                    </td>
+
+                </tr>
+
+                {% empty %}
+
+                <tr>
+                    <td colspan="7">
+                        No trips created yet.
+                    </td>
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+<!-- ================= BOOKINGS ================= -->
+
+<section id="bookings" class="dashboard-card">
+
+    <div class="card-top">
+        <h3>Recent Bookings</h3>
+    </div>
+
+    <div class="table-wrapper">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>ID</th>
+                    <th>Customer</th>
+                    <th>Trip</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                    <th>Date</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% for booking in bookings %}
+
+                <tr>
+
+                    <td>#{{ booking.id }}</td>
+
+                    <td>{{ booking.profile.user.username }}</td>
+
+                    <td>
+                        {{ booking.trip.source }}
+                        →
+                        {{ booking.trip.destination }}
+                    </td>
+
+                    <td>₹ {{ booking.total_amount }}</td>
+
+                    <td>{{ booking.status|title }}</td>
+
+                    <td>{{ booking.booking_date|date:"d M Y" }}</td>
+
+                </tr>
+
+                {% empty %}
+
+                <tr>
+
+                    <td colspan="6">
+                        No bookings yet.
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+</div>
+
+{% endblock %}

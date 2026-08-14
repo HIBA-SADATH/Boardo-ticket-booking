@@ -1,0 +1,281 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/traveller.css' %}">
+
+
+<!-- SUCCESS MESSAGE -->
+
+{% if messages %}
+
+<div class="message-container">
+
+    {% for message in messages %}
+
+    <div class="alert-message">
+
+        <div class="message-icon">
+            ✓
+        </div>
+
+        <div class="message-text">
+            {{ message }}
+        </div>
+
+        <button class="close-message"
+                onclick="this.parentElement.remove()">
+            ×
+        </button>
+
+    </div>
+
+    {% endfor %}
+
+</div>
+
+{% endif %}
+
+
+
+<div class="container">
+
+
+    <div class="page-header">
+
+        <div>
+
+            <h1>
+                My Travellers
+            </h1>
+
+            <p>
+                Manage your saved traveller details.
+            </p>
+
+        </div>
+
+
+
+        <a href="{% url 'add_traveller' %}"
+           class="btn-primary">
+
+            + Add Traveller
+
+        </a>
+
+
+    </div>
+
+
+
+
+
+    {% if travellers %}
+
+
+    <div class="traveller-grid">
+
+
+
+        {% for traveller in travellers %}
+
+
+
+        <div class="card">
+
+
+
+            <h2 style="color:white">
+
+                {{ traveller.full_name }}
+
+            </h2>
+
+
+
+            <span class="gender">
+
+                {{ traveller.get_gender_display }}
+
+            </span>
+
+
+
+
+
+            <div class="details">
+
+
+                <p>
+
+                    <strong>
+                        Age
+                    </strong>
+
+                    {{ traveller.age }}
+
+                </p>
+
+
+
+
+                <p>
+
+                    <strong>
+                        Phone
+                    </strong>
+
+                    {{ traveller.phone|default:"Not Added" }}
+
+                </p>
+
+
+
+
+                <p>
+
+                    <strong>
+                        Email
+                    </strong>
+
+                    {{ traveller.email|default:"Not Added" }}
+
+                </p>
+
+
+
+
+                <p>
+
+                    <strong>
+                        ID Proof
+                    </strong>
+
+                    {{ traveller.id_proof|default:"-" }}
+
+                </p>
+
+
+
+            </div>
+
+
+
+
+
+            <div class="actions">
+
+
+                <a href="{% url 'edit_traveller' traveller.id %}"
+                   class="edit">
+
+                    Edit
+
+                </a>
+
+
+
+
+                <a href="{% url 'delete_traveller' traveller.id %}"
+                   class="delete">
+
+                    Delete
+
+                </a>
+
+
+            </div>
+
+
+
+        </div>
+
+
+
+
+        {% endfor %}
+
+
+
+    </div>
+
+
+
+
+
+    {% else %}
+
+
+
+
+    <div class="empty">
+
+
+        <h2>
+            No Travellers Added
+        </h2>
+
+
+
+        <p>
+            Add a traveller to speed up bookings.
+        </p>
+
+
+
+        <a href="{% url 'add_traveller' %}"
+           class="btn-primary">
+
+            Add Traveller
+
+        </a>
+
+
+    </div>
+
+
+
+
+    {% endif %}
+
+
+
+
+
+<script>
+
+
+setTimeout(function(){
+
+    let message =
+    document.querySelector(".alert-message");
+
+
+    if(message){
+
+        message.style.opacity="0";
+
+        message.style.transform=
+        "translateX(80px)";
+
+
+        setTimeout(function(){
+
+            message.remove();
+
+        },400);
+
+    }
+
+
+},3000);
+
+
+
+</script>
+
+
+
+{% endblock %}

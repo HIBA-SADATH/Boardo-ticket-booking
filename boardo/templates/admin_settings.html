@@ -1,0 +1,334 @@
+{% extends "admin_base.html" %}
+{% load static %}
+
+
+{% block content1 %}
+
+
+<link rel="stylesheet" href="{% static 'css/adminsettings.css' %}">
+
+
+
+<main class="dash-main">
+
+
+    <div class="dash-header">
+
+        <div>
+
+            <p class="eyebrow">
+                CONFIGURATION
+            </p>
+
+
+            <h1 class="dash-title">
+                Admin Settings
+            </h1>
+
+
+            <p class="dash-subtitle">
+                Manage platform-wide settings and preferences.
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+    <div class="table-card settings-card">
+
+
+        <h3>
+            Site Configuration
+        </h3>
+
+
+        <p class="chart-card-sub">
+            These settings apply across the entire Voyago platform.
+        </p>
+
+
+
+
+
+
+
+        <form method="POST"
+              enctype="multipart/form-data">
+
+
+            {% csrf_token %}
+
+
+
+
+
+            {% if form.non_field_errors %}
+
+            <div class="form-errors">
+
+                {{ form.non_field_errors }}
+
+            </div>
+
+            {% endif %}
+
+
+
+
+
+
+
+
+
+            <div class="form-group">
+
+
+                <label for="{{ form.website_name.id_for_label }}">
+
+                    Website Name
+
+                </label>
+
+
+                {{ form.website_name }}
+
+
+
+                {% if form.website_name.errors %}
+
+                <div class="field-error">
+
+                    {{ form.website_name.errors|striptags }}
+
+                </div>
+
+                {% endif %}
+
+
+            </div>
+
+
+
+
+
+
+
+
+
+            <div class="form-group">
+
+
+                <label for="{{ form.support_email.id_for_label }}">
+
+                    Support Email
+
+                </label>
+
+
+                {{ form.support_email }}
+
+
+
+                {% if form.support_email.errors %}
+
+                <div class="field-error">
+
+                    {{ form.support_email.errors|striptags }}
+
+                </div>
+
+                {% endif %}
+
+
+            </div>
+
+
+
+
+
+
+
+
+
+            <div class="form-group">
+
+
+                <label for="{{ form.support_phone.id_for_label }}">
+
+                    Support Phone
+
+                </label>
+
+
+                {{ form.support_phone }}
+
+
+
+                {% if form.support_phone.errors %}
+
+                <div class="field-error">
+
+                    {{ form.support_phone.errors|striptags }}
+
+                </div>
+
+                {% endif %}
+
+
+            </div>
+
+
+
+
+
+
+
+
+
+            <div class="form-group">
+
+
+                <label for="{{ form.logo.id_for_label }}">
+
+                    Platform Logo
+
+                </label>
+
+
+
+
+
+                {% if site_settings and site_settings.logo %}
+
+
+                <div class="current-logo">
+
+
+                    <img src="{{ site_settings.logo.url }}"
+                         alt="Current platform logo">
+
+
+                </div>
+
+
+
+                {% else %}
+
+
+                <p class="field-hint">
+
+                    No logo uploaded yet.
+
+                </p>
+
+
+                {% endif %}
+
+
+
+
+
+                {{ form.logo }}
+
+
+
+
+                {% if form.logo.errors %}
+
+                <div class="field-error">
+
+                    {{ form.logo.errors|striptags }}
+
+                </div>
+
+                {% endif %}
+
+
+            </div>
+
+
+
+
+
+
+
+
+
+            <div class="form-group toggle-group">
+
+
+                <label class="toggle-label">
+
+
+                    <span>
+
+                        Maintenance Mode
+
+                        <small>
+                            Temporarily disable access for normal users.
+                        </small>
+
+
+                    </span>
+
+
+
+
+                    {{ form.maintenance_mode }}
+
+
+
+                </label>
+
+
+            </div>
+
+
+
+
+
+
+
+
+
+            <div class="form-actions">
+
+
+                <button type="submit"
+                        class="btn btn-primary">
+
+                    Save Settings
+
+                </button>
+
+
+            </div>
+
+
+
+
+
+        </form>
+
+
+
+
+
+    </div>
+
+
+
+
+
+</main>
+
+
+
+
+{% endblock %}

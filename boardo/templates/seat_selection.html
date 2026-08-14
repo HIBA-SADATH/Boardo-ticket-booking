@@ -1,0 +1,102 @@
+
+Seat selection · HTML
+{% extends 'base.html' %}
+{% load static %}
+ 
+{% block title %}Select Seats | Boardo{% endblock %}
+ 
+{% block content %}
+ 
+<link rel="stylesheet" href="{% static 'css/seat_selection.css' %}">
+ 
+<div class="container py-5">
+ 
+    <!-- Trip Details -->
+    <div class="trip-card">
+        <div class="trip-header">
+            <h2>{{ trip.source }} <span class="arrow">→</span> {{ trip.destination }}</h2>
+            <p class="vehicle-name">{{ trip.vehicle.name }} &nbsp;|&nbsp; {{ trip.vehicle.company }}</p>
+ 
+            <div class="trip-info">
+                <span>🕒 {{ trip.departure_time|date:"d M Y, h:i A" }}</span>
+                <span>💰 ₹{{ trip.fare }}</span>
+                <span>🚌 {{ trip.vehicle.category|title }}</span>
+            </div>
+        </div>
+    </div>
+ 
+    <div class="seat-page">
+ 
+        <!-- Seat Selection -->
+        <div class="seat-box">
+            <h3>Select Your Seat</h3>
+            <p>Available Seats: {{ seats|length }}</p>
+ 
+            <div class="driver">🚍 Driver</div>
+ 
+            <div class="seat-container">
+                {% for seat in seats %}
+                    {% if seat.id in booked_seats %}
+                        <button class="seat booked" disabled>{{ seat.seat_number }}</button>
+                    {% else %}
+                        <button
+                            type="button"
+                            class="seat available"
+                            data-id="{{ seat.id }}"
+                            data-number="{{ seat.seat_number }}"
+                            data-price="{{ trip.fare }}">
+                            {{ seat.seat_number }}
+                        </button>
+                    {% endif %}
+                {% empty %}
+                    <p>No seats found</p>
+                {% endfor %}
+            </div>
+ 
+            <div class="legend">
+                <div><span class="box available-box"></span> Available</div>
+                <div><span class="box selected-box"></span> Selected</div>
+                <div><span class="box booked-box"></span> Booked</div>
+            </div>
+        </div>
+ 
+        <!-- Summary -->
+        <div class="summary-box">
+            <h3>Booking Summary</h3>
+            <hr>
+ 
+            <p>Selected Seats:</p>
+            <div id="selectedSeats" class="selected-list">No seat selected</div>
+ 
+            <div class="total">
+                <span>Total</span>
+                <span>₹<span id="totalPrice">0</span></span>
+            </div>
+ 
+             <form
+    method="GET"
+    action="{% url 'traveller_selection' trip.id %}"
+>
+
+    <input
+        type="hidden"
+        name="seats"
+        id="seatInput"
+    >
+
+    <button
+        class="continue-btn"
+    >
+        Continue
+    </button>
+
+</form>
+        </div>
+ 
+    </div>
+</div>
+ 
+<script src="{% static 'js/seat_selection.js' %}"></script>
+ 
+{% endblock %}
+ 

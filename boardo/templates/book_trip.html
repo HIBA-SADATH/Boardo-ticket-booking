@@ -1,0 +1,184 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Seat Selection | Boardo
+{% endblock %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/book_trip.css' %}">
+
+<section class="seat-page">
+
+    <!-- Header -->
+
+    <header class="seat-header">
+
+        <p class="eyebrow">BOARDO BOOKING</p>
+
+        <h1>Select Your Seats</h1>
+
+        <p>Choose your preferred seats for a comfortable journey</p>
+
+        <div class="route-display">
+            <span>{{ trip.source }}</span>
+            <strong>→</strong>
+            <span>{{ trip.destination }}</span>
+        </div>
+
+    </header>
+
+    <!-- Card -->
+
+    <div class="seat-card">
+
+        <div class="vehicle-info">
+
+            <div class="vehicle-icon">
+                ⬡
+            </div>
+
+            <div>
+
+                <h2>{{ trip.vehicle.name }}</h2>
+
+                <p>{{ trip.vehicle.category.type|title }}</p>
+
+                <span>
+                    Total Seats: {{ trip.vehicle.total_seats }}
+                </span>
+
+            </div>
+
+        </div>
+
+        <form id="seatForm">
+
+            {% csrf_token %}
+
+            <!-- Legend -->
+
+            <div class="seat-legend">
+
+                <div>
+                    <span class="available"></span>
+                    Available
+                </div>
+
+                <div>
+                    <span class="selected"></span>
+                    Selected
+                </div>
+
+                <div>
+                    <span class="booked"></span>
+                    Booked
+                </div>
+
+            </div>
+
+            <!-- Seats -->
+
+            <div class="seat-grid">
+
+                {% for seat in seats %}
+
+                <label class="seat-box {% if seat.id in booked_seat_ids %}booked{% endif %}">
+
+                    <input
+                        type="checkbox"
+                        name="selected_seats"
+                        value="{{ seat.id }}"
+                        {% if seat.id in booked_seat_ids %}
+                        disabled
+                        {% endif %}
+                    >
+
+                    <span>{{ seat.seat_number }}</span>
+
+                </label>
+
+                {% empty %}
+
+                <p>No seats available.</p>
+
+                {% endfor %}
+
+            </div>
+
+            <!-- Summary -->
+
+            <div class="seat-summary">
+
+                Selected Seats:
+                <strong id="seatCount">0</strong>
+
+            </div>
+
+            <button type="submit" class="continue-btn">
+
+                Continue to Traveller Details
+
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+<script>
+const seats = document.querySelectorAll('input[name="selected_seats"]');
+const count = document.getElementById("seatCount");
+const form = document.getElementById("seatForm");
+
+seats.forEach(seat => {
+
+    seat.addEventListener("change", function () {
+
+        const selected = document.querySelectorAll(
+            'input[name="selected_seats"]:checked'
+        );
+
+        count.innerText = selected.length;
+
+        this.parentElement.classList.toggle(
+            "active",
+            this.checked
+        );
+
+    });
+
+});
+
+form.addEventListener("submit", function(e){
+
+    e.preventDefault();
+
+    const selected = [];
+
+    document.querySelectorAll(
+        'input[name="selected_seats"]:checked'
+    ).forEach(function(seat){
+
+        selected.push(seat.value);
+
+    });
+
+    if(selected.length === 0){
+
+        alert("Please select at least one seat.");
+
+        return;
+
+    }
+
+    window.location.href =
+        "{% url 'traveller_selection' trip.id %}?seats=" +
+        selected.join(",");
+
+});
+</script>
+
+{% endblock %}

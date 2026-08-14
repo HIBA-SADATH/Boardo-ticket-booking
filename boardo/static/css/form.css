@@ -1,0 +1,578 @@
+/* ==========================================
+   BOARDO FORM SYSTEM
+   Add Category / Vehicle / Trip Forms
+========================================== */
+
+
+:root{
+
+    --bg:#090C14;
+
+    --card:#111827;
+
+    --card-soft:#0D1420;
+
+    --border:#263248;
+
+    --border-hover:#3B82F6;
+
+    --primary:#22C6E0;
+
+    --secondary:#6C7CF0;
+
+    --success:#14E8C4;
+
+    --danger:#F87171;
+
+    --text:#F7F9FC;
+
+    --text-light:#C5CBD8;
+
+    --text-muted:#7E879C;
+
+}
+
+
+
+/* ================= PAGE ================= */
+
+
+.category-page{
+
+    min-height:70vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:60px 20px;
+
+}
+
+
+
+/* ================= CARD ================= */
+
+
+.category-card{
+
+    width:100%;
+
+    max-width:480px;
+
+    background:
+
+    linear-gradient(
+        145deg,
+        rgba(255,255,255,.04),
+        transparent
+    ),
+    var(--card);
+
+
+    border:1px solid var(--border);
+
+    border-radius:24px;
+
+    padding:36px;
+
+
+    position:relative;
+
+
+    box-shadow:
+
+    0 30px 70px rgba(0,0,0,.45);
+
+
+    animation:fadeUp .6s ease;
+
+}
+
+
+
+.category-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:-1px;
+
+    border-radius:24px;
+
+    background:
+
+    linear-gradient(
+        135deg,
+        rgba(34,198,224,.35),
+        rgba(108,124,240,.25)
+    );
+
+
+    z-index:-1;
+
+    filter:blur(12px);
+
+    opacity:.5;
+
+}
+
+
+
+/* ================= HEADER ================= */
+
+
+.eyebrow{
+
+    text-align:center;
+
+    color:var(--success);
+
+    font-size:12px;
+
+    font-weight:700;
+
+    letter-spacing:.25em;
+
+    text-transform:uppercase;
+
+    margin-bottom:14px;
+
+}
+
+
+
+.category-title{
+
+    text-align:center;
+
+    color:var(--text);
+
+    font-size:28px;
+
+    font-weight:800;
+
+    letter-spacing:-.03em;
+
+    margin-bottom:10px;
+
+}
+
+
+
+.category-subtitle{
+
+    text-align:center;
+
+    color:var(--text-muted);
+
+    font-size:14px;
+
+    margin-bottom:32px;
+
+}
+
+
+
+
+
+/* ================= FORM ================= */
+
+
+.category-form{
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+
+
+.form-group{
+
+    margin-bottom:20px;
+
+}
+
+
+
+.form-group label{
+
+    display:block;
+
+    color:var(--text-light);
+
+    font-size:13px;
+
+    font-weight:600;
+
+    margin-bottom:8px;
+
+}
+
+
+
+
+
+/* ================= INPUTS ================= */
+
+
+.form-group input,
+.form-group select,
+.form-group textarea{
+
+
+    width:100%;
+
+
+    background:var(--card-soft);
+
+
+    color:var(--text);
+
+
+    border:1px solid var(--border);
+
+
+    border-radius:14px;
+
+
+    padding:14px 16px;
+
+
+    font-size:15px;
+
+    font-family:'Inter',sans-serif;
+
+
+    outline:none;
+
+
+    transition:.25s;
+
+}
+
+
+
+.form-group input::placeholder,
+.form-group textarea::placeholder{
+
+    color:var(--text-muted);
+
+}
+
+
+
+.form-group input:hover,
+.form-group select:hover,
+.form-group textarea:hover{
+
+    border-color:#40506B;
+
+}
+
+
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus{
+
+
+    border-color:var(--primary);
+
+
+    box-shadow:
+
+    0 0 0 4px rgba(34,198,224,.12),
+
+    0 0 20px rgba(34,198,224,.15);
+
+}
+
+
+
+/* ================= SELECT ================= */
+
+
+.form-group select{
+
+
+    appearance:none;
+
+
+    cursor:pointer;
+
+
+    background-image:
+
+
+    linear-gradient(
+        45deg,
+        transparent 50%,
+        var(--text-muted) 50%
+    ),
+
+
+    linear-gradient(
+        135deg,
+        var(--text-muted) 50%,
+        transparent 50%
+    );
+
+
+    background-position:
+
+
+    calc(100% - 20px) 50%,
+
+    calc(100% - 14px) 50%;
+
+
+    background-size:
+
+    6px 6px;
+
+
+    background-repeat:no-repeat;
+
+}
+
+
+
+
+
+/* ================= ERRORS ================= */
+
+
+.form-errors,
+.field-error{
+
+
+    color:var(--danger);
+
+
+    background:
+
+    rgba(248,113,113,.12);
+
+
+    border:
+
+    1px solid rgba(248,113,113,.35);
+
+
+    border-radius:12px;
+
+
+    padding:12px 14px;
+
+
+    font-size:13px;
+
+}
+
+
+
+.form-errors{
+
+    margin-bottom:20px;
+
+}
+
+
+
+.field-hint{
+
+    color:var(--text-muted);
+
+    font-size:12px;
+
+    margin-top:6px;
+
+}
+
+
+
+/* ================= BUTTONS ================= */
+
+
+.form-actions{
+
+    display:flex;
+
+    gap:14px;
+
+    margin-top:28px;
+
+}
+
+
+
+.btn{
+
+
+    flex:1;
+
+
+    padding:14px;
+
+
+    border-radius:14px;
+
+
+    font-size:15px;
+
+
+    font-weight:700;
+
+
+    text-align:center;
+
+
+    cursor:pointer;
+
+
+    transition:.25s;
+
+
+}
+
+
+
+/* SAVE */
+
+
+.btn-primary{
+
+
+    background:
+
+    linear-gradient(
+        135deg,
+        var(--primary),
+        var(--secondary)
+    );
+
+
+    color:#07121B;
+
+
+    border:none;
+
+
+}
+
+
+
+.btn-primary:hover{
+
+
+    transform:translateY(-2px);
+
+
+    box-shadow:
+
+    0 15px 35px rgba(34,198,224,.25);
+
+
+}
+
+
+
+
+
+/* CANCEL */
+
+
+.btn-secondary{
+
+
+    background:var(--card-soft);
+
+
+    color:var(--text-light);
+
+
+    border:1px solid var(--border);
+
+
+}
+
+
+
+.btn-secondary:hover{
+
+
+    border-color:var(--primary);
+
+
+    color:white;
+
+}
+
+
+
+
+
+/* ================= RESPONSIVE ================= */
+
+
+@media(max-width:600px){
+
+
+    .category-card{
+
+        padding:24px;
+
+        border-radius:20px;
+
+    }
+
+
+    .category-title{
+
+        font-size:24px;
+
+    }
+
+
+    .form-actions{
+
+        flex-direction:column;
+
+    }
+
+}
+
+
+
+
+
+/* ================= ANIMATION ================= */
+
+
+@keyframes fadeUp{
+
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(25px);
+
+    }
+
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}

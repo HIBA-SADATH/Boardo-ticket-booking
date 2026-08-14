@@ -1,0 +1,110 @@
+{% extends "agency_base.html" %}
+{% load static %}
+
+{% block title %}
+My Vehicles | Boardo
+{% endblock %}
+
+{% block content2 %}
+
+<link rel="stylesheet" href="{% static 'css/vehicle_list.css' %}">
+
+<main class="dash-main">
+
+    <div class="page-header">
+
+        <div>
+            <p class="page-tag">MY FLEET</p>
+            <h1>My Vehicles</h1>
+            <span>
+                Manage all vehicles registered under your agency.
+            </span>
+        </div>
+
+        <a href="{% url 'add_vehicle' %}" class="add-btn">
+            + Add Vehicle
+        </a>
+
+    </div>
+
+
+    {% if vehicles %}
+
+    <div class="vehicle-grid">
+
+        {% for vehicle in vehicles %}
+
+        <div class="vehicle-card">
+
+    
+
+
+            <div class="vehicle-content">
+
+                <span class="vehicle-type">
+                    {{ vehicle.category|title }}
+                </span>
+
+                <h2>
+                    {{ vehicle.name }}
+                </h2>
+
+                <p>
+                    {{ vehicle.company }}
+                </p>
+
+                <div class="vehicle-info">
+
+                    <div>
+                        <small>Total Seats</small>
+                        <strong>{{ vehicle.total_seats }}</strong>
+                    </div>
+
+                    <div>
+                        <small style="color: antiquewhite">Registration</small>
+                        <strong style="color: antiquewhite">{{ vehicle.vehicle_number }}</strong>
+                    </div>
+
+                </div>
+
+                <div class="vehicle-actions">
+
+                    <a href="{'% url 'edit_vehicle'%'}" class="btn-outline">
+                        Edit
+                    </a>
+
+                    <!-- <a href="#" class="btn-primary">
+                        View
+                    </a> -->
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+    {% else %}
+
+    <div class="empty-box">
+
+        <h2>No Vehicles Found</h2>
+
+        <p>
+            Start by adding your first vehicle.
+        </p>
+
+        <a href="{% url 'add_vehicle' %}" class="btn-primary">
+            Add Vehicle
+        </a>
+
+    </div>
+
+    {% endif %}
+
+</main>
+
+{% endblock %}

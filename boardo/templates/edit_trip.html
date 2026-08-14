@@ -1,0 +1,45 @@
+{% extends 'agency_base.html' %}
+{% load static %}
+
+{% block title %}
+Edit Trip
+{% endblock %}
+
+{% block content2 %}
+<link rel="stylesheet" href="{% static 'css/edit_trip.css' %}"
+<div class="container mt-5">
+
+    <div class="card shadow p-4">
+
+        <h2 class="mb-4">
+            Edit Trip
+        </h2>
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <button
+                type="submit"
+                class="btn btn-success">
+
+                Update Trip
+
+            </button>
+
+            <a href="{% url 'agencydashboard' %}"
+               class="btn btn-secondary">
+
+                Cancel
+
+            </a>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

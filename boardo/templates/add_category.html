@@ -1,0 +1,354 @@
+{% extends "admin_base.html" %}
+{% load static %}
+
+
+{% block content1 %}
+
+
+<link rel="stylesheet" href="{% static 'css/add_category.css' %}">
+
+
+<main class="dash-main">
+
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="dash-header">
+
+        <div>
+
+            <p class="eyebrow">
+                CONFIGURATION
+            </p>
+
+
+            <h1 class="dash-title">
+                Manage Categories
+            </h1>
+
+
+            <p class="dash-subtitle">
+                Create and manage travel categories for Voyago.
+            </p>
+
+        </div>
+
+    </header>
+
+
+
+
+
+    <!-- ================= CATEGORY LIST ================= -->
+
+
+    <section class="category-card">
+
+
+        <div class="card-header">
+
+
+            <div>
+
+                <h2>
+                    Available Categories
+                </h2>
+
+
+                <p>
+                    Manage your platform travel categories.
+                </p>
+
+            </div>
+
+
+
+            <span class="category-count">
+
+                {{ categories|length }} Categories
+
+            </span>
+
+
+        </div>
+
+
+
+
+
+
+        <div class="category-list">
+
+
+
+            {% for category in categories %}
+
+
+
+            <article class="category-item">
+
+
+                <div class="category-info">
+
+
+
+                    <div class="category-icon">
+
+
+                        {% if category.type == "flight" %}
+
+                            ✈
+
+
+                        {% elif category.type == "train" %}
+
+                            🚆
+
+
+                        {% elif category.type == "bus" %}
+
+                            🚌
+
+
+                        {% elif category.type == "event" %}
+
+                            🎫
+
+
+                        {% endif %}
+
+
+
+                    </div>
+
+
+
+
+
+                    <div class="category-text">
+
+
+                        <h3>
+
+                            {{ category.get_type_display }}
+
+                        </h3>
+
+
+                        <p>
+
+                            {{ category.type|title }} travel category
+
+                        </p>
+
+
+                    </div>
+
+
+                </div>
+
+
+
+
+
+
+
+                <div class="category-status">
+
+
+                    {% if category.is_active %}
+
+
+                        <span class="badge active">
+
+                            Active
+
+                        </span>
+
+
+                    {% else %}
+
+
+                        <span class="badge inactive">
+
+                            Disabled
+
+                        </span>
+
+
+                    {% endif %}
+
+
+
+                </div>
+
+
+
+            </article>
+
+
+
+
+
+            {% empty %}
+
+
+
+            <div class="empty-state">
+
+
+                <h3>
+                    No Categories Found
+                </h3>
+
+
+                <p>
+                    Add your first travel category below.
+                </p>
+
+
+            </div>
+
+
+
+            {% endfor %}
+
+
+
+
+        </div>
+
+
+
+    </section>
+
+
+
+
+
+
+
+
+
+    <!-- ================= ADD CATEGORY FORM ================= -->
+
+
+
+    <section class="category-card form-card">
+
+
+
+        <div class="card-header">
+
+
+            <div>
+
+
+                <h2>
+                    Add New Category
+                </h2>
+
+
+                <p>
+                    Select a category type to add.
+                </p>
+
+
+            </div>
+
+
+        </div>
+
+
+
+
+
+
+
+
+        <form method="POST">
+
+
+            {% csrf_token %}
+
+
+
+
+            {% if form.errors %}
+
+
+            <div class="form-errors">
+
+
+                {{ form.errors }}
+
+
+            </div>
+
+
+            {% endif %}
+
+
+
+
+
+
+            <div class="form-group">
+
+
+
+                <label for="{{ form.type.id_for_label }}">
+
+                    Category Type
+
+                </label>
+
+
+
+
+
+                {{ form.type }}
+
+
+
+
+
+            </div>
+
+
+
+
+
+
+
+            <button type="submit"
+                    class="btn-primary">
+
+
+                Add Category
+
+
+            </button>
+
+
+
+
+
+
+        </form>
+
+
+
+
+    </section>
+
+
+
+
+
+
+</main>
+
+
+
+{% endblock %}

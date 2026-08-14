@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Payment | Boardo{% endblock %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/payment.css' %}">
+
+<div class="payment-container">
+
+    <div class="payment-card">
+
+        <h2>Complete Your Payment</h2>
+
+        <div class="booking-details">
+
+            <p><strong>Booking ID</strong> {{ booking.id }}</p>
+
+            <p><strong>Trip</strong> {{ booking.trip.source }} → {{ booking.trip.destination }}</p>
+
+            <p><strong>Vehicle</strong> {{ booking.trip.vehicle.name }}</p>
+
+            <p><strong>Total Amount</strong> ₹{{ booking.total_amount }}</p>
+
+        </div>
+
+        <button id="pay-btn" class="pay-btn" type="button">
+            Pay ₹{{ booking.total_amount }}
+        </button>
+
+    </div>
+
+</div>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<script>
+
+console.log("========== PAYMENT PAGE ==========");
+
+const options = {
+
+    key: "{{ key }}",
+
+    amount: "{{ amount }}",
+
+    currency: "INR",
+
+    name: "Boardo",
+
+    description: "Trip Booking Payment",
+
+    image: "{% static 'images/logo.png' %}",
+
+    order_id: "{{ booking.payment_order_id }}",
+
+    prefill: {
+
+        name: "{{ request.user.get_full_name }}",
+
+        email: "{{ request.user.email }}"
+
+    },
+
+    theme: {
+
+        color: "#2dd9c4"
+
+    },
+
+    handler: function (response) {
+
+        console.log("Payment Success");
+
+        console.log(response);
+
+        window.location.href =
+            "{% url 'payment_success' %}" +
+            "?payment_id=" +
+            encodeURIComponent(response.razorpay_payment_id) +
+            "&order_id=" +
+            encodeURIComponent(response.razorpay_order_id) +
+            "&signature=" +
+            encodeURIComponent(response.razorpay_signature);
+
+    }
+
+};
+
+console.log(options);
+
+const rzp = new Razorpay(options);
+
+rzp.on("payment.failed", function (response) {
+
+    console.log("Payment Failed");
+
+    console.log(response);
+
+    alert(
+        "Payment Failed\n\n" +
+        response.error.description
+    );
+
+});
+
+document
+    .getElementById("pay-btn")
+    .addEventListener("click", function (e) {
+
+        e.preventDefault();
+
+        console.log("Opening Razorpay...");
+
+        this.disabled = true;
+
+        this.innerText = "Opening Payment...";
+
+        rzp.open();
+
+        setTimeout(() => {
+
+            this.disabled = false;
+
+            this.innerText =
+                "Pay ₹{{ booking.total_amount }}";
+
+        }, 3000);
+
+    });
+
+</script>
+
+{% endblock %}

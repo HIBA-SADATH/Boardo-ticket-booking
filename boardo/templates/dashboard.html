@@ -1,0 +1,406 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Boardo
+{% endblock %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="hero-vignette" aria-hidden="true"></div>
+
+    <div class="hero-inner">
+
+        <p class="hero-eyebrow">
+            <span class="hex-dot"></span>
+            NEXT-GEN TICKETING
+        </p>
+
+
+        <h1 class="hero-title">
+            One <span class="gold-italic">hexagon.</span><br>
+            Every way to travel.
+        </h1>
+
+
+        <p class="hero-subtitle">
+            Flights, trains, buses and live events,
+            booked instantly on Boardo.
+        </p>
+
+
+
+        <!-- ================= SEARCH BOX ================= -->
+
+        <form method="GET"
+              action="{% url 'search_trip' %}"
+              class="search-card">
+
+
+            <!-- Travel Type Tabs -->
+
+            <div class="tabs">
+
+                <button
+                    type="button"
+                    class="tab active"
+                    onclick="switchMode('flight',this)">
+                    Flights
+                </button>
+
+
+                <button
+                    type="button"
+                    class="tab"
+                    onclick="switchMode('train',this)">
+                    Trains
+                </button>
+
+
+                <button
+                    type="button"
+                    class="tab"
+                    onclick="switchMode('bus',this)">
+                    Buses
+                </button>
+
+            </div>
+
+
+
+            <!-- Hidden Category -->
+
+            {{ form.category }}
+
+
+
+            <!-- LOCATION SEARCH -->
+
+            <div class="search-grid">
+
+
+                <div class="field">
+
+                    <label id="fromLabel">
+                        From
+                    </label>
+
+                    {{ form.source }}
+
+                </div>
+
+
+                <div class="field-divider" aria-hidden="true">
+                    <span class="hex-mini"></span>
+                </div>
+
+
+                <div class="field">
+
+                    <label id="toLabel">
+                        To
+                    </label>
+
+                    {{ form.destination }}
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- DATE + TRAVELLERS -->
+
+            <div class="search-grid search-grid-bottom">
+
+
+                <div class="field">
+
+                    <label>
+                        Departure
+                    </label>
+
+                    {{ form.departure_date }}
+
+                </div>
+
+
+
+
+                <div class="field">
+
+                    <label>
+                        Travellers
+                    </label>
+
+                    {{ form.travellers }}
+
+                </div>
+
+
+
+                <button
+                    type="submit"
+                    class="btn-search">
+
+                    <span class="btn-search-icon">⌕</span>
+                    Search
+
+                </button>
+
+
+            </div>
+
+
+        </form>
+
+
+
+        <div class="scroll-hint" aria-hidden="true">
+            <span class="hex-mini small"></span>
+            <span>↓</span>
+        </div>
+
+    </div>
+
+</section>
+
+
+
+
+
+<!-- ================= POPULAR ROUTES ================= -->
+
+
+<section class="routes">
+
+    <p class="section-eyebrow">Curated fares</p>
+
+    <h2>
+        Popular this week
+    </h2>
+
+
+
+    <div class="route-grid">
+
+
+        <div class="route-card teal">
+
+            <span class="route-corner" aria-hidden="true"></span>
+
+            <p>
+                Chennai → Dubai
+            </p>
+
+            <h3>
+                From ₹14,200
+            </h3>
+
+        </div>
+
+
+
+
+        <div class="route-card violet">
+
+            <span class="route-corner" aria-hidden="true"></span>
+
+            <p>
+                Mumbai → London
+            </p>
+
+            <h3>
+                From ₹41,900
+            </h3>
+
+        </div>
+
+
+
+
+
+        <div class="route-card teal">
+
+            <span class="route-corner" aria-hidden="true"></span>
+
+            <p>
+                Bengaluru → Bangkok
+            </p>
+
+            <h3>
+                From ₹9,800
+            </h3>
+
+        </div>
+
+
+
+    </div>
+
+
+</section>
+
+
+
+
+
+<!-- ================= FEATURES ================= -->
+
+
+<section class="features">
+
+
+    <div class="feature">
+
+        <div class="icon-hex">
+            <span class="icon">⚡</span>
+        </div>
+
+
+        <h3>
+            Instant Confirmation
+        </h3>
+
+
+        <p>
+            Tickets issued in under 10 seconds.
+        </p>
+
+    </div>
+
+
+
+
+
+    <div class="feature">
+
+
+        <div class="icon-hex">
+            <span class="icon">🛡️</span>
+        </div>
+
+
+        <h3>
+            Fare Lock Guarantee
+        </h3>
+
+
+        <p>
+            Price protected while you decide.
+        </p>
+
+
+    </div>
+
+
+
+
+
+
+    <div class="feature">
+
+
+        <div class="icon-hex">
+            <span class="icon">↻</span>
+        </div>
+
+
+        <h3>
+            Free Rebooking
+        </h3>
+
+
+        <p>
+            Change your plans easily.
+        </p>
+
+
+    </div>
+
+
+
+</section>
+
+
+
+
+
+
+<script>
+
+
+const modeData = {
+
+
+    flight:{
+        labelFrom:"From Airport",
+        labelTo:"To Airport",
+        category:"flight"
+    },
+
+
+    train:{
+        labelFrom:"From Station",
+        labelTo:"To Station",
+        category:"train"
+    },
+
+
+    bus:{
+        labelFrom:"From City",
+        labelTo:"To City",
+        category:"bus"
+    }
+
+
+};
+
+
+
+function switchMode(mode,button){
+
+
+    document
+    .querySelectorAll(".tab")
+    .forEach(tab=>{
+        tab.classList.remove("active");
+    });
+
+
+
+    button.classList.add("active");
+
+
+
+    document.getElementById("fromLabel").innerText =
+        modeData[mode].labelFrom;
+
+
+
+    document.getElementById("toLabel").innerText =
+        modeData[mode].labelTo;
+
+
+
+    document.getElementById("id_category").value =
+        modeData[mode].category;
+
+
+
+}
+
+
+</script>
+
+
+{% endblock %}

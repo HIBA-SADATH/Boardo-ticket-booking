@@ -1,0 +1,307 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Search Trips
+{% endblock %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/search_trip.css' %}">
+
+<section class="search-page">
+
+    <!-- Header -->
+
+    <div class="page-header">
+        <h1>Find Your Journey</h1>
+        <p>Flights • Trains • Buses</p>
+    </div>
+
+    <!-- Search Form -->
+
+    <form method="GET"
+          action="{% url 'search_trip' %}"
+          class="search-box">
+
+        <div class="search-field">
+            <label>Category</label>
+
+            <select name="category">
+
+                <option value="flight"
+                    {% if category == "flight" %}selected{% endif %}>
+                    ✈ Flight
+                </option>
+
+                <option value="train"
+                    {% if category == "train" %}selected{% endif %}>
+                    🚆 Train
+                </option>
+
+                <option value="bus"
+                    {% if category == "bus" %}selected{% endif %}>
+                    🚌 Bus
+                </option>
+
+            </select>
+
+        </div>
+
+        <div class="search-field">
+            <label>From</label>
+
+            <input type="text"
+                   name="source"
+                   value="{{ source }}"
+                   placeholder="Source">
+        </div>
+
+        <div class="search-field">
+            <label>To</label>
+
+            <input type="text"
+                   name="destination"
+                   value="{{ destination }}"
+                   placeholder="Destination">
+        </div>
+
+        <div class="search-field">
+            <label>Date</label>
+
+            <input type="date"
+                   name="departure_date"
+                   value="{{ departure_date|date:'Y-m-d' }}">
+        </div>
+
+        <div class="search-field">
+            <label>Travellers</label>
+
+            <input type="number"
+                   name="travellers"
+                   min="1"
+                   value="{{ travellers }}">
+        </div>
+
+        <button class="search-btn" type="submit">
+            Search
+        </button>
+
+    </form>
+
+    <!-- Result Count -->
+
+    <div class="trip-count">
+        {{ trips|length }} Trip{{ trips|pluralize }} Found
+    </div>
+
+    <!-- Trips -->
+
+    {% if trips %}
+
+    <div class="trip-list">
+
+        {% for trip in trips %}
+
+        <div class="trip-card">
+
+            <!-- Left -->
+
+            <div class="trip-left">
+
+                <div class="trip-logo">
+
+                    {% if trip.vehicle.logo %}
+                        <img src="{{ trip.vehicle.logo.url }}"
+                             alt="{{ trip.vehicle.name }}"
+                             class="vehicle-logo">
+                    {% else %}
+                        <img src="{% static 'images/default_vehicle.png' %}"
+                             alt="Vehicle"
+                             class="vehicle-logo">
+                    {% endif %}
+
+                </div>
+
+                <div class="trip-info">
+
+                    {% if trip.vehicle.company %}
+                        <h2>{{ trip.vehicle.company }}</h2>
+                    {% endif %}
+
+                    <p class="vehicle-name">
+                        {{ trip.vehicle.name }}
+                    </p>
+
+                    <span class="badge">
+                        {{ trip.vehicle.category|title }}
+                    </span>
+
+                </div>
+
+            </div>
+
+            <!-- Middle -->
+
+            <div class="trip-middle">
+
+                <div class="time">
+
+                    <h2>
+                        {{ trip.departure_time|date:"H:i" }}
+                    </h2>
+
+                    <small>
+                        {{ trip.source }}
+                    </small>
+
+                </div>
+
+                <div class="journey">
+
+                    <div class="line"></div>
+
+                    <span>
+                        {{ trip.duration_display }}
+                    </span>
+
+                </div>
+
+                <div class="time">
+
+                    <h2>
+                        {{ trip.arrival_time|date:"H:i" }}
+                    </h2>
+
+                    <small>
+                        {{ trip.destination }}
+                    </small>
+
+                </div>
+
+            </div>
+
+            <!-- Right -->
+
+            <div class="trip-right">
+
+                <small class="fare-label">
+                    Starts from
+                </small>
+
+                <div class="fare">
+                    ₹{{ trip.fare }}
+                </div>
+
+                <div class="seat">
+                    {{ trip.available_seats }} Seats Left
+                </div>
+
+                {% if user.is_authenticated %}
+
+                    {% if trip.vehicle.category == "bus" %}
+
+                        <a href="{% url 'seat_selection' trip.id %}"
+                           class="book-btn">
+
+                            Select Seat
+
+                        </a>
+
+                    {% else %}
+
+                        <a href="{% url 'book_trip' trip.id %}"
+                           class="book-btn">
+
+                            Book Now
+
+                        </a>
+
+                    {% endif %}
+
+                {% else %}
+
+                    <button type="button"
+                            class="book-btn"
+                            data-bs-toggle="modal"
+                            data-bs-target="#loginModal">
+
+                        Login to Continue
+
+                    </button>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+    {% else %}
+
+    <div class="empty">
+
+        <h2>No Trips Found</h2>
+
+        <p>Try changing your search.</p>
+
+    </div>
+
+    {% endif %}
+
+</section>
+
+<!-- Login Modal -->
+
+<div class="modal fade"
+     id="loginModal"
+     tabindex="-1">
+
+    <div class="modal-dialog modal-dialog-centered">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h5 class="modal-title">
+                    Login Required
+                </h5>
+
+                <button class="btn-close"
+                        data-bs-dismiss="modal">
+                </button>
+
+            </div>
+
+            <div class="modal-body text-center">
+
+                <h6>
+                    Please login to continue booking your trip
+                </h6>
+
+                <a href="{% url 'login' %}"
+                   class="btn btn-primary mt-3">
+
+                    Login
+
+                </a>
+
+                <a href="{% url 'regpage' %}"
+                   class="btn btn-outline-secondary mt-3">
+
+                    Create Account
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,1241 @@
+/*==========================================================
+ BOARDO SEARCH TRIP PAGE
+ PART 1 — RESET • PAGE • HEADER • SEARCH FORM
+==========================================================*/
+
+/*==============================
+ RESET
+==============================*/
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+.search-page{
+
+    width:100%;
+    max-width:1400px;
+
+    margin:0 auto;
+
+    padding:60px 20px;
+
+}
+
+/*==============================
+ PAGE HEADER
+==============================*/
+
+.search-page .page-header{
+
+    text-align:center;
+
+    margin-bottom:45px;
+
+}
+
+.search-page .page-header h1{
+
+    font-size:48px;
+
+    font-weight:800;
+
+    color:#00E5D8;
+
+    margin-bottom:10px;
+
+    letter-spacing:.5px;
+
+}
+
+.search-page .page-header p{
+
+    font-size:17px;
+
+    color:#A5F3FC;
+
+    letter-spacing:1px;
+
+}
+
+/*==============================
+ SEARCH BOX
+==============================*/
+
+.search-page .search-box{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(6,1fr);
+
+    gap:18px;
+
+    padding:28px;
+
+    border-radius:22px;
+
+    background:rgba(255,255,255,.05);
+
+    backdrop-filter:blur(10px);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,.15);
+
+    margin-bottom:45px;
+
+}
+
+/*==============================
+ SEARCH FIELD
+==============================*/
+
+.search-page .search-field{
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.search-page .search-field label{
+
+    margin-bottom:8px;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    color:#CBD5E1;
+
+}
+
+.search-page .search-field input,
+
+.search-page .search-field select{
+
+    height:54px;
+
+    border:none;
+
+    outline:none;
+
+    border-radius:14px;
+
+    padding:0 16px;
+
+    background:#F8FAFC;
+
+    color:#111827;
+
+    font-size:15px;
+
+    transition:.3s;
+
+}
+
+.search-page .search-field input::placeholder{
+
+    color:#94A3B8;
+
+}
+
+.search-page .search-field input:focus,
+
+.search-page .search-field select:focus{
+
+    border:2px solid #00E5D8;
+
+    box-shadow:
+        0 0 0 4px rgba(0,229,216,.15);
+
+}
+
+/*==============================
+ SEARCH BUTTON
+==============================*/
+
+.search-page .search-btn{
+
+    align-self:end;
+
+    height:54px;
+
+    border:none;
+
+    border-radius:14px;
+
+    cursor:pointer;
+
+    font-size:15px;
+
+    font-weight:700;
+
+    color:#fff;
+
+    background:
+        linear-gradient(
+            135deg,
+            #00E5D8,
+            #7B5CFA
+        );
+
+    transition:.35s;
+
+}
+
+.search-page .search-btn:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+        0 15px 35px rgba(123,92,250,.35);
+
+}
+
+/*==============================
+ RESULT COUNT
+==============================*/
+
+.search-page .trip-count{
+
+    margin-bottom:35px;
+
+    font-size:28px;
+
+    font-weight:700;
+
+    color:#00E5D8;
+
+}
+/*==========================================================
+ BOARDO SEARCH TRIP PAGE
+ PART 2 — TRIP CARD • LEFT SECTION • LOGO
+==========================================================*/
+
+/*==============================
+ TRIP LIST
+==============================*/
+
+.search-page .trip-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:25px;
+
+}
+
+/*==============================
+ TRIP CARD
+==============================*/
+
+.search-page .trip-card{
+
+    display:grid;
+
+    grid-template-columns:
+        300px
+        1fr
+        220px;
+
+    align-items:center;
+
+    gap:35px;
+
+    padding:26px 30px;
+
+    border-radius:24px;
+
+    background:#F8FAFC;
+
+    border:1px solid #E5E7EB;
+
+    box-shadow:
+        0 12px 35px rgba(0,0,0,.10);
+
+    transition:.35s ease;
+
+}
+
+.search-page .trip-card:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:
+        0 20px 45px rgba(0,0,0,.18);
+
+}
+
+/*==============================
+ LEFT SECTION
+==============================*/
+
+.search-page .trip-left{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:22px;
+
+}
+
+/*==============================
+ LOGO BOX
+==============================*/
+
+.search-page .logo{
+
+    width:78px;
+
+    height:78px;
+
+    min-width:78px;
+
+    border-radius:18px;
+
+    background:#FFFFFF;
+
+    border:1px solid #E5E7EB;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    overflow:hidden;
+
+    box-shadow:
+        0 6px 18px rgba(0,0,0,.08);
+
+}
+
+/*==============================
+ VEHICLE IMAGE
+==============================*/
+
+.search-page .vehicle-logo{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:contain;
+
+    padding:8px;
+
+    transition:.35s;
+
+}
+
+.search-page .trip-card:hover .vehicle-logo{
+
+    transform:scale(1.08);
+
+}
+
+/*==============================
+ COMPANY DETAILS
+==============================*/
+
+.search-page .trip-left h2{
+
+    font-size:26px;
+
+    font-weight:800;
+
+    color:#111827;
+
+    margin-bottom:5px;
+
+}
+
+.search-page .trip-left p{
+
+    font-size:15px;
+
+    color:#4B5563;
+
+    margin-bottom:12px;
+
+}
+
+/*==============================
+ CATEGORY BADGE
+==============================*/
+
+.search-page .badge{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:7px 16px;
+
+    border-radius:50px;
+
+    background:#EEF2FF;
+
+    color:#4338CA;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    letter-spacing:.3px;
+
+    transition:.3s;
+
+}
+
+.search-page .trip-card:hover .badge{
+
+    background:#4338CA;
+
+    color:#FFFFFF;
+
+}
+
+/*==============================
+ CARD ANIMATION
+==============================*/
+
+.search-page .trip-card{
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.search-page .trip-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:-100%;
+
+    width:100%;
+
+    height:100%;
+
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.25),
+        transparent
+    );
+
+    transition:.8s;
+
+}
+
+.search-page .trip-card:hover::before{
+
+    left:100%;
+
+}
+/*==========================================================
+ BOARDO SEARCH TRIP PAGE
+ PART 3 — JOURNEY • TIME • DURATION
+==========================================================*/
+
+/*==============================
+ MIDDLE SECTION
+==============================*/
+
+.search-page .trip-middle{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:30px;
+
+    flex:1;
+
+}
+
+/*==============================
+ DEPARTURE / ARRIVAL
+==============================*/
+
+.search-page .time{
+
+    min-width:120px;
+
+    text-align:center;
+
+}
+
+.search-page .time h2{
+
+    font-size:38px;
+
+    font-weight:800;
+
+    color:#111827;
+
+    margin-bottom:8px;
+
+}
+
+.search-page .time small{
+
+    display:block;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    color:#6B7280;
+
+}
+
+/*==============================
+ JOURNEY SECTION
+==============================*/
+
+.search-page .journey{
+
+    flex:1;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:0 15px;
+
+}
+
+/*==============================
+ CONNECTED LINE
+==============================*/
+
+.search-page .line{
+
+    width:100%;
+
+    height:4px;
+
+    background:linear-gradient(
+        90deg,
+        #00E5D8,
+        #7B5CFA
+    );
+
+    border-radius:50px;
+
+    position:relative;
+
+    margin-bottom:14px;
+
+}
+
+/* Left Circle */
+
+.search-page .line::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:-2px;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    width:14px;
+
+    height:14px;
+
+    border-radius:50%;
+
+    background:#00E5D8;
+
+    border:3px solid #fff;
+
+    box-shadow:0 0 10px rgba(0,229,216,.35);
+
+}
+
+/* Right Circle */
+
+.search-page .line::after{
+
+    content:"";
+
+    position:absolute;
+
+    right:-2px;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    width:14px;
+
+    height:14px;
+
+    border-radius:50%;
+
+    background:#7B5CFA;
+
+    border:3px solid #fff;
+
+    box-shadow:0 0 10px rgba(123,92,250,.35);
+
+}
+
+/*==============================
+ BUS ICON
+==============================*/
+
+.search-page .line span{
+
+    position:absolute;
+
+    left:50%;
+
+    top:50%;
+
+    transform:translate(-50%,-50%);
+
+    width:34px;
+
+    height:34px;
+
+    border-radius:50%;
+
+    background:#fff;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:18px;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.12);
+
+}
+
+/*==============================
+ DURATION
+==============================*/
+
+.search-page .journey>span{
+
+    font-size:15px;
+
+    font-weight:700;
+
+    color:#4B5563;
+
+    letter-spacing:.5px;
+
+}
+
+/*==============================
+ TIME HOVER
+==============================*/
+
+.search-page .trip-card:hover .time h2{
+
+    color:#4338CA;
+
+    transition:.3s;
+
+}
+
+.search-page .trip-card:hover .journey>span{
+
+    color:#111827;
+
+}
+/*==========================================================
+ BOARDO SEARCH TRIP PAGE
+ PART 4 — RIGHT SECTION • FARE • SEATS • BUTTON
+==========================================================*/
+
+/*==============================
+ RIGHT SIDE
+==============================*/
+
+.search-page .trip-right{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:flex-end;
+
+    justify-content:center;
+
+}
+
+/*==============================
+ FARE LABEL
+==============================*/
+
+.search-page .fare-label{
+
+    font-size:13px;
+
+    font-weight:700;
+
+    color:#0891B2;
+
+    margin-bottom:6px;
+
+    text-transform:uppercase;
+
+    letter-spacing:.8px;
+
+}
+
+/*==============================
+ PRICE
+==============================*/
+
+.search-page .fare{
+
+    font-size:42px;
+
+    font-weight:800;
+
+    color:#111827;
+
+    line-height:1;
+
+    margin-bottom:18px;
+
+}
+
+/*==============================
+ SEATS
+==============================*/
+
+.search-page .seat{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:10px 18px;
+
+    margin-bottom:20px;
+
+    border-radius:30px;
+
+    background:#DCFCE7;
+
+    color:#15803D;
+
+    font-size:14px;
+
+    font-weight:700;
+
+    border:1px solid #BBF7D0;
+
+}
+
+/*==============================
+ BOOK BUTTON
+==============================*/
+
+.search-page .book-btn{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    width:170px;
+
+    height:50px;
+
+    border:none;
+
+    outline:none;
+
+    border-radius:14px;
+
+    cursor:pointer;
+
+    text-decoration:none;
+
+    font-size:15px;
+
+    font-weight:700;
+
+    color:#FFFFFF;
+
+    background:linear-gradient(
+        135deg,
+        #00E5D8,
+        #7B5CFA
+    );
+
+    transition:.35s;
+
+}
+
+/*==============================
+ BUTTON HOVER
+==============================*/
+
+.search-page .book-btn:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+        0 15px 35px rgba(123,92,250,.35);
+
+}
+
+/*==============================
+ BUTTON ACTIVE
+==============================*/
+
+.search-page .book-btn:active{
+
+    transform:scale(.98);
+
+}
+
+/*==============================
+ LOGIN BUTTON
+==============================*/
+
+.search-page button.book-btn{
+
+    appearance:none;
+
+}
+
+/*==============================
+ CARD HOVER EFFECT
+==============================*/
+
+.search-page .trip-card:hover .fare{
+
+    color:#4338CA;
+
+}
+
+.search-page .trip-card:hover .seat{
+
+    background:#22C55E;
+
+    color:#FFFFFF;
+
+    border-color:#22C55E;
+
+}
+
+/*==============================
+ CARD BORDER
+==============================*/
+
+.search-page .trip-card{
+
+    position:relative;
+
+}
+
+.search-page .trip-card::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    top:0;
+
+    width:5px;
+
+    height:100%;
+
+    border-radius:24px 0 0 24px;
+
+    background:linear-gradient(
+        180deg,
+        #00E5D8,
+        #7B5CFA
+    );
+
+    opacity:0;
+
+    transition:.35s;
+
+}
+
+.search-page .trip-card:hover::after{
+
+    opacity:1;
+
+}
+/*==========================================================
+ BOARDO SEARCH TRIP PAGE
+ PART 5 — EMPTY • MODAL • RESPONSIVE • FINAL
+==========================================================*/
+
+/*==============================
+ EMPTY STATE
+==============================*/
+
+.search-page .empty{
+
+    width:100%;
+
+    padding:90px 40px;
+
+    text-align:center;
+
+    border-radius:24px;
+
+    background:#FFFFFF;
+
+    border:1px solid #E5E7EB;
+
+    box-shadow:0 15px 35px rgba(0,0,0,.08);
+
+}
+
+.search-page .empty h2{
+
+    font-size:38px;
+
+    color:#111827;
+
+    margin-bottom:15px;
+
+    font-weight:800;
+
+}
+
+.search-page .empty p{
+
+    font-size:17px;
+
+    color:#6B7280;
+
+}
+
+/*==============================
+ LOGIN MODAL
+==============================*/
+
+.search-page .modal-content{
+
+    border:none;
+
+    border-radius:22px;
+
+    overflow:hidden;
+
+    box-shadow:0 20px 50px rgba(0,0,0,.20);
+
+}
+
+.search-page .modal-header{
+
+    background:#F8FAFC;
+
+    border-bottom:1px solid #E5E7EB;
+
+}
+
+.search-page .modal-title{
+
+    font-size:20px;
+
+    font-weight:700;
+
+    color:#111827;
+
+}
+
+.search-page .modal-body{
+
+    padding:35px;
+
+    text-align:center;
+
+}
+
+.search-page .modal-body h6{
+
+    color:#4B5563;
+
+    font-size:16px;
+
+    line-height:1.6;
+
+    margin-bottom:25px;
+
+}
+
+.search-page .modal-body .btn{
+
+    min-width:180px;
+
+    border-radius:12px;
+
+    font-weight:600;
+
+    padding:12px 24px;
+
+    margin:8px;
+
+}
+
+/*==============================
+ SMOOTH TRANSITIONS
+==============================*/
+
+.search-page *{
+
+    transition:
+        .3s ease;
+
+}
+
+/*==============================
+ SCROLLBAR
+==============================*/
+
+::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#7B5CFA;
+
+    border-radius:20px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#F3F4F6;
+
+}
+
+/*==============================
+ TABLET
+==============================*/
+
+@media(max-width:1200px){
+
+.search-page .search-box{
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+}
+
+.search-page .trip-card{
+
+    grid-template-columns:
+        1fr;
+
+    text-align:center;
+
+    gap:30px;
+
+}
+
+.search-page .trip-left{
+
+    justify-content:center;
+
+}
+
+.search-page .trip-middle{
+
+    justify-content:center;
+
+}
+
+.search-page .trip-right{
+
+    align-items:center;
+
+}
+
+}
+
+/*==============================
+ MOBILE
+==============================*/
+
+@media(max-width:768px){
+
+.search-page{
+
+    padding:35px 15px;
+
+}
+
+.search-page .page-header h1{
+
+    font-size:34px;
+
+}
+
+.search-page .page-header p{
+
+    font-size:15px;
+
+}
+
+.search-page .search-box{
+
+    grid-template-columns:1fr;
+
+}
+
+.search-page .trip-middle{
+
+    flex-direction:column;
+
+    gap:20px;
+
+}
+
+.search-page .journey{
+
+    width:100%;
+
+}
+
+.search-page .time{
+
+    min-width:unset;
+
+}
+
+.search-page .fare{
+
+    font-size:34px;
+
+}
+
+.search-page .book-btn{
+
+    width:100%;
+
+}
+
+}
+
+/*==============================
+ SMALL MOBILE
+==============================*/
+
+@media(max-width:480px){
+
+.search-page .trip-card{
+
+    padding:20px;
+
+}
+
+.search-page .logo{
+
+    width:65px;
+
+    height:65px;
+
+}
+
+.search-page .trip-left h2{
+
+    font-size:22px;
+
+}
+
+.search-page .time h2{
+
+    font-size:30px;
+
+}
+
+.search-page .fare{
+
+    font-size:30px;
+
+}
+
+.search-page .empty{
+
+    padding:60px 20px;
+
+}
+
+.search-page .empty h2{
+
+    font-size:28px;
+
+}
+
+}
+
+/*==============================
+ FINAL POLISH
+==============================*/
+
+.search-page .trip-card:hover{
+
+    border-color:#7B5CFA;
+
+}
+
+.search-page .vehicle-logo{
+
+    display:block;
+
+}
+
+.search-page .book-btn:focus{
+
+    outline:none;
+
+}
+
+.search-page input,
+.search-page select,
+.search-page button{
+
+    font-family:inherit;
+
+}

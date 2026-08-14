@@ -1,0 +1,45 @@
+{% extends "admin_base.html" %}
+{% load static %}
+
+{% block content1 %}
+<link rel="stylesheet" href="{% static 'css/reg_agency.css' %}">
+
+<div class="form-page">
+    <div class="form-container">
+
+        <p class="form-eyebrow">Admin</p>
+        <h2 class="form-title">Register Agency</h2>
+        <p class="form-subtitle">Add a new travel agency to the Boardo network</p>
+
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            {% if form.non_field_errors %}
+                <div class="form-errors">
+                    {{ form.non_field_errors }}
+                </div>
+            {% endif %}
+
+            {% for field in form %}
+                <div class="form-group">
+                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                    {{ field }}
+                    {% if field.help_text %}
+                        <div class="field-hint">{{ field.help_text }}</div>
+                    {% endif %}
+                    {% if field.errors %}
+                        <div class="field-error">{{ field.errors|striptags }}</div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Register Agency</button>
+                <a href="{% url 'admindashboard' %}" class="btn btn-secondary">Cancel</a>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+{% endblock %}
