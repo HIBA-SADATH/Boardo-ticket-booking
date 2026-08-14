@@ -75,7 +75,7 @@ Features include:
 
 Boardo includes an AI chatbot interface to assist users with travel and booking-related interactions.
 
-### ⭐ Reviews & Favourites
+### ⭐ Reviews & Favourites(on going)
 
 Users can:
 
